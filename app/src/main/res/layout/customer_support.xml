@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/DrawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="7dp">
+
+
+    <LinearLayout
+        android:id="@+id/mainview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/tool_bar"
+                layout="@layout/tool_bar">
+            </include>
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:elevation="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+
+                />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/black"
+            android:padding="20dp"
+            >
+
+
+            <TextView
+                android:id="@+id/customerSupHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/customer_support_string1"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
+
+            <RelativeLayout
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatButton
+                    app:backgroundTint="@color/themeColordark"
+                    android:id="@+id/emailUs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="@string/btn_text_customer_sup"
+                    />
+
+                <android.support.v7.widget.AppCompatButton
+                   android:layout_alignParentRight="true"
+                   android:layout_alignParentEnd="true"
+                    app:backgroundTint="@color/white"
+                    android:id="@+id/enquiry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/themeColordark"
+                    android:text="@string/btn_text_customer_enquiry"
+                    />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/emailText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:text="@string/text_below_button" />
+
+            <ImageView
+                android:padding="25dp"
+                android:id="@+id/imageView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/customer_supp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                 />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <fragment
+        android:id="@+id/left_drawer"
+        android:name="Fragments.NavigationDrawer"
+        android:layout_width="265dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#ffffff"
+        app:layout="@layout/drawerlayout"
+        tools:layout="@layout/drawerlayout" />
+
+
+</android.support.v4.widget.DrawerLayout>

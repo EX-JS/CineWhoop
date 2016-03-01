@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\New folder\AndroidStudioProjects\CineWhoop\monthAndYearPicker\src\main\res"><file name="activity_main" path="D:\New folder\AndroidStudioProjects\CineWhoop\monthAndYearPicker\src\main\res\layout\activity_main.xml" qualifiers="" type="layout"/><file name="month_year_picker_view" path="D:\New folder\AndroidStudioProjects\CineWhoop\monthAndYearPicker\src\main\res\layout\month_year_picker_view.xml" qualifiers="" type="layout"/><file path="D:\New folder\AndroidStudioProjects\CineWhoop\monthAndYearPicker\src\main\res\values\strings.xml" qualifiers=""><string name="alert_dialog_title">Please Select</string><string name="positive_button_text">Select</string><string name="app_name">Month Only Picker</string><string name="negative_button_text">Cancel</string></file><file path="D:\New folder\AndroidStudioProjects\CineWhoop\monthAndYearPicker\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style><style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style></file></source><source path="D:\New folder\AndroidStudioProjects\CineWhoop\monthAndYearPicker\build\generated\res\rs\release"/><source path="D:\New folder\AndroidStudioProjects\CineWhoop\monthAndYearPicker\build\generated\res\resValues\release"/></dataSet><dataSet config="release"><source path="D:\New folder\AndroidStudioProjects\CineWhoop\monthAndYearPicker\src\release\res"/></dataSet><mergedItems/></merger>

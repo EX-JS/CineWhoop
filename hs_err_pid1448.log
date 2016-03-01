@@ -1,0 +1,338 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x0000000076589f81, pid=1448, tid=2860
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_66-b18) (build 1.8.0_66-b18)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.66-b18 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# V  [jvm.dll+0x239f81]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000018029800):  JavaThread "Daemon worker" [_thread_in_vm, id=2860, stack(0x0000000019540000,0x0000000019640000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0xffffffffffffffff
+
+Registers:
+RAX=0x0065006c00750064, RBX=0x0065006c00750064, RCX=0x0000000000000000, RDX=0x00000000ec7eff80
+RSP=0x000000001963a590, RBP=0x0000000018029800, RSI=0x00000000ec7eff80, RDI=0x00000000180a7798
+R8 =0x0065006c00750064, R9 =0x0000000000000801, R10=0x0000000017f57840, R11=0x00000001001ab860
+R12=0x0000000000000000, R13=0x000000001a87a2b5, R14=0x000000001963a9e0, R15=0x0000000018029800
+RIP=0x0000000076589f81, EFLAGS=0x0000000000010202
+
+Top of Stack: (sp=0x000000001963a590)
+0x000000001963a590:   00000001001ab400 0000000076463e5f
+0x000000001963a5a0:   0000000018029800 000000001963a800
+0x000000001963a5b0:   0000000017f92570 00000000765e3ca8
+0x000000001963a5c0:   0000000018029800 000000001963a9e0
+0x000000001963a5d0:   000000001a87a2b5 0000000000000000
+0x000000001963a5e0:   0065006c00750064 000000007658aa54
+0x000000001963a5f0:   000000001963a720 000000001963a750
+0x000000001963a600:   0000000018029800 00000000174c3f00
+0x000000001963a610:   000000001963a710 000000007658b201
+0x000000001963a620:   00000000174c3f00 00000000174c3f00
+0x000000001963a630:   0000000018029800 0000000018029800
+0x000000001963a640:   0000000000000001 000000007645f00f
+0x000000001963a650:   00000000ec7eff80 00000000174c3f00
+0x000000001963a660:   0000000018029800 000000007640b73b
+0x000000001963a670:   000000001963abe8 000000001a879ba0
+0x000000001963a680:   000000001963a770 000000001a879ba0 
+
+Instructions: (pc=0x0000000076589f81)
+0x0000000076589f61:   05 ee cd 56 00 33 c9 89 47 68 ff 15 ff 2a 58 00
+0x0000000076589f71:   48 3b c3 0f 85 37 01 00 00 48 8b c3 48 83 e0 fd
+0x0000000076589f81:   48 8b 00 48 89 07 48 89 5f 18 4c 89 67 28 48 89
+0x0000000076589f91:   77 08 48 8b 06 48 85 c0 74 24 4c 8d 0d 96 69 3c 
+
+
+Register to memory mapping:
+
+RAX=0x0065006c00750064 is an unknown value
+RBX=0x0065006c00750064 is an unknown value
+RCX=0x0000000000000000 is an unknown value
+RDX=0x00000000ec7eff80 is an oop
+
+[error occurred during error reporting (printing register info), id 0xc0000005]
+
+Stack: [0x0000000019540000,0x0000000019640000],  sp=0x000000001963a590,  free space=1001k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x239f81]
+V  [jvm.dll+0x23aa54]
+V  [jvm.dll+0x23b201]
+V  [jvm.dll+0x10f00f]
+V  [jvm.dll+0x113977]
+V  [jvm.dll+0x113e55]
+V  [jvm.dll+0xba90d]
+C  0x0000000002af3115
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  org.codehaus.groovy.util.ReferenceType.<clinit>()V+13
+v  ~StubRoutines::call_stub
+j  org.codehaus.groovy.util.ReferenceManager.<clinit>()V+27
+v  ~StubRoutines::call_stub
+j  org.codehaus.groovy.util.ReferenceBundle.<clinit>()V+9
+v  ~StubRoutines::call_stub
+j  org.codehaus.groovy.runtime.metaclass.MetaClassRegistryImpl.<init>(IZ)V+53
+j  org.codehaus.groovy.runtime.metaclass.MetaClassRegistryImpl.<init>()V+3
+j  groovy.lang.GroovySystem.<clinit>()V+8
+v  ~StubRoutines::call_stub
+j  org.codehaus.groovy.runtime.InvokerHelper.<clinit>()V+34
+v  ~StubRoutines::call_stub
+j  groovy.lang.GroovyObjectSupport.<init>()V+9
+j  org.gradle.api.internal.plugins.DefaultExtraPropertiesExtension.<init>()V+1
+j  org.gradle.api.internal.plugins.DefaultConvention.<init>(Lorg/gradle/internal/reflect/Instantiator;)V+44
+j  org.gradle.api.internal.ExtensibleDynamicObject.<init>(Ljava/lang/Object;Lorg/gradle/api/internal/AbstractDynamicObject;Lorg/gradle/internal/reflect/Instantiator;)V+8
+j  org.gradle.api.internal.AsmBackedClassGenerator$MixInExtensibleDynamicObject.<init>(Ljava/lang/Object;Lorg/gradle/api/internal/DynamicObject;)V+10
+j  org.gradle.invocation.DefaultGradle_Decorated.getAsDynamicObject()Lorg/gradle/api/internal/DynamicObject;+16
+j  org.gradle.invocation.DefaultGradle_Decorated.getConvention()Lorg/gradle/api/plugins/Convention;+1
+j  org.gradle.invocation.DefaultGradle_Decorated.getConventionMapping()Lorg/gradle/api/internal/ConventionMapping;+16
+j  org.gradle.invocation.DefaultGradle_Decorated.getServices()Lorg/gradle/internal/service/ServiceRegistry;+1
+j  org.gradle.invocation.DefaultGradle_Decorated.getListenerManager()Lorg/gradle/internal/event/ListenerManager;+9
+j  org.gradle.invocation.DefaultGradle.<init>(Lorg/gradle/api/invocation/Gradle;Lorg/gradle/StartParameter;Lorg/gradle/internal/service/scopes/ServiceRegistryFactory;)V+62
+j  org.gradle.invocation.DefaultGradle_Decorated.<init>(Lorg/gradle/api/invocation/Gradle;Lorg/gradle/StartParameter;Lorg/gradle/internal/service/scopes/ServiceRegistryFactory;)V+4
+v  ~StubRoutines::call_stub
+j  sun.reflect.NativeConstructorAccessorImpl.newInstance0(Ljava/lang/reflect/Constructor;[Ljava/lang/Object;)Ljava/lang/Object;+0
+j  sun.reflect.NativeConstructorAccessorImpl.newInstance([Ljava/lang/Object;)Ljava/lang/Object;+85
+j  sun.reflect.DelegatingConstructorAccessorImpl.newInstance([Ljava/lang/Object;)Ljava/lang/Object;+5
+j  java.lang.reflect.Constructor.newInstance([Ljava/lang/Object;)Ljava/lang/Object;+79
+j  org.gradle.internal.reflect.DirectInstantiator.newInstance(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;+148
+j  org.gradle.api.internal.ClassGeneratorBackedInstantiator.newInstance(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;+19
+j  org.gradle.initialization.DefaultGradleLauncherFactory.doNewInstance(Lorg/gradle/StartParameter;Lorg/gradle/initialization/BuildCancellationToken;Lorg/gradle/initialization/BuildRequestMetaData;Lorg/gradle/initialization/BuildEventConsumer;)Lorg/gradle/initialization/DefaultGradleLauncher;+343
+j  org.gradle.initialization.DefaultGradleLauncherFactory.newInstance(Lorg/gradle/StartParameter;Lorg/gradle/initialization/BuildRequestContext;)Lorg/gradle/initialization/GradleLauncher;+39
+j  org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/initialization/BuildRequestContext;Lorg/gradle/launcher/exec/BuildActionParameters;)Ljava/lang/Object;+11
+j  org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(Lorg/gradle/internal/invocation/BuildAction;Lorg/gradle/initialization/BuildRequestContext;Ljava/lang/Object;)Ljava/lang/Object;+7
+j  org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;Lorg/gradle/launcher/daemon/protocol/Build;)V+70
+j  org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+49
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+28
+j  org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+19
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+28
+j  org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+4
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+28
+j  org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+31
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+28
+j  org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.call()Ljava/lang/Void;+4
+j  org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.call()Ljava/lang/Object;+1
+j  org.gradle.util.Swapper.swap(Ljava/lang/Object;Ljava/util/concurrent/Callable;)Ljava/lang/Object;+21
+j  org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+63
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+28
+j  org.gradle.launcher.daemon.server.health.DaemonHealthTracker.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+35
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+28
+j  org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;Lorg/gradle/launcher/daemon/protocol/Build;)V+106
+j  org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+49
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+28
+j  org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;Lorg/gradle/launcher/daemon/protocol/Build;)V+243
+j  org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+49
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+28
+j  org.gradle.launcher.daemon.server.health.HintGCAfterBuild.execute(Lorg/gradle/launcher/daemon/server/api/DaemonCommandExecution;)V+1
+j  org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed()Z+28
+j  org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run()V+44
+j  org.gradle.launcher.daemon.server.DaemonStateCoordinator$1.run()V+4
+j  org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(Ljava/lang/Runnable;)V+1
+j  org.gradle.internal.concurrent.StoppableExecutorImpl$1.run()V+25
+j  java.util.concurrent.ThreadPoolExecutor.runWorker(Ljava/util/concurrent/ThreadPoolExecutor$Worker;)V+95
+j  java.util.concurrent.ThreadPoolExecutor$Worker.run()V+5
+j  java.lang.Thread.run()V+11
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0000000017eaa000 JavaThread "Stdin handler" [_thread_blocked, id=912, stack(0x0000000019640000,0x0000000019740000)]
+=>0x0000000018029800 JavaThread "Daemon worker" [_thread_in_vm, id=2860, stack(0x0000000019540000,0x0000000019640000)]
+  0x0000000017dfa000 JavaThread "Cancel handler" [_thread_blocked, id=3384, stack(0x0000000019440000,0x0000000019540000)]
+  0x0000000017f60000 JavaThread "Handler for socket connection from /127.0.0.1:60938 to /127.0.0.1:60939" [_thread_in_native, id=2368, stack(0x0000000019340000,0x0000000019440000)]
+  0x0000000017f4e800 JavaThread "Daemon" [_thread_blocked, id=2596, stack(0x0000000019240000,0x0000000019340000)]
+  0x00000000179c9000 JavaThread "Incoming local TCP Connector on port 60938" [_thread_in_native, id=2752, stack(0x0000000018b40000,0x0000000018c40000)]
+  0x0000000016c80800 JavaThread "Service Thread" daemon [_thread_blocked, id=2568, stack(0x0000000017070000,0x0000000017170000)]
+  0x00000000151a3000 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=968, stack(0x0000000016b70000,0x0000000016c70000)]
+  0x000000001519d000 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=2204, stack(0x0000000016a70000,0x0000000016b70000)]
+  0x00000000151aa000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=500, stack(0x0000000016970000,0x0000000016a70000)]
+  0x00000000151a8000 JavaThread "Attach Listener" daemon [_thread_blocked, id=2692, stack(0x0000000016870000,0x0000000016970000)]
+  0x00000000151a6800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=2712, stack(0x0000000016770000,0x0000000016870000)]
+  0x0000000002707800 JavaThread "Finalizer" daemon [_thread_blocked, id=2576, stack(0x0000000016400000,0x0000000016500000)]
+  0x00000000026ff000 JavaThread "Reference Handler" daemon [_thread_blocked, id=2416, stack(0x0000000016300000,0x0000000016400000)]
+  0x0000000002612800 JavaThread "main" [_thread_blocked, id=2948, stack(0x0000000000dc0000,0x0000000000ec0000)]
+
+Other Threads:
+  0x0000000015167800 VMThread [stack: 0x0000000016200000,0x0000000016300000] [id=1796]
+  0x0000000016c95000 WatcherThread [stack: 0x0000000017170000,0x0000000017270000] [id=656]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 36864K, used 32178K [0x00000000eab00000, 0x00000000ef300000, 0x0000000100000000)
+  eden space 31744K, 89% used [0x00000000eab00000,0x00000000ec6c7a88,0x00000000eca00000)
+  from space 5120K, 72% used [0x00000000eca00000,0x00000000ecda4f78,0x00000000ecf00000)
+  to   space 5120K, 0% used [0x00000000eee00000,0x00000000eee00000,0x00000000ef300000)
+ ParOldGen       total 84992K, used 8K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0002000,0x00000000c5300000)
+ Metaspace       used 11886K, capacity 12242K, committed 12544K, reserved 1060864K
+  class space    used 1608K, capacity 1715K, committed 1792K, reserved 1048576K
+
+Card table byte_map: [0x0000000011e90000,0x00000000120a0000] byte_map_base: 0x0000000011890000
+
+Marking Bits: (ParMarkBitMap*) 0x0000000076b5a5b0
+ Begin Bits: [0x0000000012600000, 0x0000000013600000)
+ End Bits:   [0x0000000013600000, 0x0000000014600000)
+
+Polling page: 0x0000000000ec0000
+
+CodeCache: size=245760Kb used=4213Kb max_used=4253Kb free=241546Kb
+ bounds [0x0000000002ad0000, 0x0000000002f00000, 0x0000000011ad0000]
+ total_blobs=1546 nmethods=1196 adapters=263
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 1.581 Thread 0x00000000151a3000 nmethod 1192 0x0000000002edab50 code [0x0000000002edad20, 0x0000000002edb6b0]
+Event: 1.582 Thread 0x00000000151a3000 1193       3       java.net.URI::match (56 bytes)
+Event: 1.582 Thread 0x00000000151a3000 nmethod 1193 0x0000000002eda650 code [0x0000000002eda7c0, 0x0000000002edaad0]
+Event: 1.582 Thread 0x00000000151a3000 1194       3       java.net.URI$Parser::<init> (31 bytes)
+Event: 1.582 Thread 0x00000000151a3000 nmethod 1194 0x0000000002eda150 code [0x0000000002eda2c0, 0x0000000002eda510]
+Event: 1.582 Thread 0x00000000151a3000 1195       3       java.net.URI::access$002 (7 bytes)
+Event: 1.582 Thread 0x00000000151a3000 nmethod 1195 0x0000000002ed9e10 code [0x0000000002ed9f60, 0x0000000002eda0b0]
+Event: 1.582 Thread 0x00000000151a3000 1196       3       java.net.URI$Parser::parse (265 bytes)
+Event: 1.585 Thread 0x00000000151a3000 nmethod 1196 0x0000000002edefd0 code [0x0000000002edf420, 0x0000000002ee1ac8]
+Event: 1.607 Thread 0x00000000151aa000 nmethod 1066 0x0000000002eed390 code [0x0000000002eed740, 0x0000000002ef4b00]
+
+GC Heap History (2 events):
+Event: 0.921 GC heap before
+{Heap before GC invocations=1 (full 0):
+ PSYoungGen      total 36864K, used 31744K [0x00000000eab00000, 0x00000000ed400000, 0x0000000100000000)
+  eden space 31744K, 100% used [0x00000000eab00000,0x00000000eca00000,0x00000000eca00000)
+  from space 5120K, 0% used [0x00000000ecf00000,0x00000000ecf00000,0x00000000ed400000)
+  to   space 5120K, 0% used [0x00000000eca00000,0x00000000eca00000,0x00000000ecf00000)
+ ParOldGen       total 84992K, used 0K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0000000,0x00000000c5300000)
+ Metaspace       used 5630K, capacity 6032K, committed 6272K, reserved 1056768K
+  class space    used 738K, capacity 800K, committed 896K, reserved 1048576K
+Event: 0.931 GC heap after
+Heap after GC invocations=1 (full 0):
+ PSYoungGen      total 36864K, used 3731K [0x00000000eab00000, 0x00000000ef300000, 0x0000000100000000)
+  eden space 31744K, 0% used [0x00000000eab00000,0x00000000eab00000,0x00000000eca00000)
+  from space 5120K, 72% used [0x00000000eca00000,0x00000000ecda4f78,0x00000000ecf00000)
+  to   space 5120K, 0% used [0x00000000eee00000,0x00000000eee00000,0x00000000ef300000)
+ ParOldGen       total 84992K, used 8K [0x00000000c0000000, 0x00000000c5300000, 0x00000000eab00000)
+  object space 84992K, 0% used [0x00000000c0000000,0x00000000c0002000,0x00000000c5300000)
+ Metaspace       used 5630K, capacity 6032K, committed 6272K, reserved 1056768K
+  class space    used 738K, capacity 800K, committed 896K, reserved 1048576K
+}
+
+Deoptimization events (10 events):
+Event: 1.408 Thread 0x0000000018029800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002cfbae4 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 253
+Event: 1.408 Thread 0x0000000018029800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002cfbae4 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 253
+Event: 1.408 Thread 0x0000000018029800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002cfbae4 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 253
+Event: 1.408 Thread 0x0000000018029800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002cfbae4 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 253
+Event: 1.409 Thread 0x0000000018029800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002cfe5bc method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 253
+Event: 1.516 Thread 0x0000000018029800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002d12dbc method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 1.516 Thread 0x0000000018029800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002d12dbc method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 1.516 Thread 0x0000000018029800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002d12dbc method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 1.516 Thread 0x0000000018029800 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x0000000002eb7694 method=java.util.HashMap.putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; @ 203
+Event: 1.582 Thread 0x0000000018029800 Uncommon trap: reason=unstable_if action=reinterpret pc=0x0000000002c13cc8 method=java.net.URI.match(CJJ)Z @ 19
+
+Internal exceptions (10 events):
+Event: 1.437 Thread 0x0000000018029800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000eba2dc60) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u66\5298\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 1.438 Thread 0x0000000018029800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000eba4c1e8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u66\5298\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 1.438 Thread 0x0000000018029800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000eba4e700) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u66\5298\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 1.439 Thread 0x0000000018029800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000eba56ba8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u66\5298\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 1.451 Thread 0x0000000018029800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000ebbe5c68) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u66\5298\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 1.451 Thread 0x0000000018029800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000ebbe90f0) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u66\5298\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 1.452 Thread 0x0000000018029800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000ebbfdfa0) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u66\5298\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 1.465 Thread 0x0000000018029800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000ebde05b8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u66\5298\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 1.466 Thread 0x0000000018029800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000ebde14b8) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u66\5298\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+Event: 1.475 Thread 0x0000000018029800 Exception <a 'java/lang/ArrayIndexOutOfBoundsException'> (0x00000000ebf94cb0) thrown at [C:\re\workspace\8-2-build-windows-amd64-cygwin\jdk8u66\5298\hotspot\src\share\vm\runtime\sharedRuntime.cpp, line 605]
+
+Events (10 events):
+Event: 1.600 loading class org/codehaus/groovy/util/ReferenceType$1
+Event: 1.600 loading class org/codehaus/groovy/util/ReferenceType$1 done
+Event: 1.600 loading class org/codehaus/groovy/util/ReferenceType$2
+Event: 1.600 loading class org/codehaus/groovy/util/ReferenceType$2 done
+Event: 1.600 loading class org/codehaus/groovy/util/ReferenceType$3
+Event: 1.600 loading class org/codehaus/groovy/util/ReferenceType$3 done
+Event: 1.600 loading class org/codehaus/groovy/util/ReferenceType$4
+Event: 1.600 loading class org/codehaus/groovy/util/ReferenceType$4 done
+Event: 1.600 loading class org/codehaus/groovy/util/Reference
+Event: 1.600 loading class org/codehaus/groovy/util/Reference done
+
+
+Dynamic libraries:
+0x000007f73c640000 - 0x000007f73c677000 	C:\Program Files\Java\jdk1.8.0_66\bin\java.exe
+0x000007fe5dbe0000 - 0x000007fe5dd9e000 	C:\Windows\SYSTEM32\ntdll.dll
+0x000007fe5cd20000 - 0x000007fe5ce56000 	C:\Windows\system32\KERNEL32.DLL
+0x000007fe5abe0000 - 0x000007fe5acd3000 	C:\Windows\system32\KERNELBASE.dll
+0x000007fe5d070000 - 0x000007fe5d14e000 	C:\Windows\system32\ADVAPI32.dll
+0x000007fe5c860000 - 0x000007fe5c9ac000 	C:\Windows\system32\USER32.dll
+0x000007fe56c80000 - 0x000007fe56ee9000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9200.16384_none_418c2a697189c07f\COMCTL32.dll
+0x000007fe5dab0000 - 0x000007fe5db55000 	C:\Windows\system32\msvcrt.dll
+0x000007fe5db60000 - 0x000007fe5dba8000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007fe5c710000 - 0x000007fe5c850000 	C:\Windows\system32\RPCRT4.dll
+0x000007fe5c340000 - 0x000007fe5c480000 	C:\Windows\system32\GDI32.dll
+0x000007fe5d370000 - 0x000007fe5d3a9000 	C:\Windows\system32\IMM32.DLL
+0x000007fe5cbf0000 - 0x000007fe5cd04000 	C:\Windows\system32\MSCTF.dll
+0x0000000076270000 - 0x0000000076342000 	C:\Program Files\Java\jdk1.8.0_66\jre\bin\msvcr100.dll
+0x0000000076350000 - 0x0000000076bd9000 	C:\Program Files\Java\jdk1.8.0_66\jre\bin\server\jvm.dll
+0x000007fe57490000 - 0x000007fe57499000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x000007fe57ed0000 - 0x000007fe57ef0000 	C:\Windows\SYSTEM32\WINMM.dll
+0x000007fe557b0000 - 0x000007fe557b9000 	C:\Windows\SYSTEM32\VERSION.dll
+0x000007fe5d880000 - 0x000007fe5d887000 	C:\Windows\system32\PSAPI.DLL
+0x000007fe5ce60000 - 0x000007fe5ceb8000 	C:\Windows\system32\WS2_32.dll
+0x000007fe57e90000 - 0x000007fe57ec2000 	C:\Windows\SYSTEM32\WINMMBASE.dll
+0x000007fe5c850000 - 0x000007fe5c859000 	C:\Windows\system32\NSI.dll
+0x0000000076260000 - 0x000000007626f000 	C:\Program Files\Java\jdk1.8.0_66\jre\bin\verify.dll
+0x0000000076230000 - 0x0000000076259000 	C:\Program Files\Java\jdk1.8.0_66\jre\bin\java.dll
+0x0000000076210000 - 0x0000000076226000 	C:\Program Files\Java\jdk1.8.0_66\jre\bin\zip.dll
+0x000007fe5b050000 - 0x000007fe5c335000 	C:\Windows\system32\SHELL32.dll
+0x000007fe5cec0000 - 0x000007fe5d070000 	C:\Windows\SYSTEM32\combase.dll
+0x000007fe5da60000 - 0x000007fe5dab0000 	C:\Windows\system32\SHLWAPI.dll
+0x000007fe58ee0000 - 0x000007fe58f76000 	C:\Windows\SYSTEM32\SHCORE.dll
+0x000007fe5ab10000 - 0x000007fe5ab25000 	C:\Windows\SYSTEM32\profapi.dll
+0x00000000761f0000 - 0x000000007620a000 	C:\Program Files\Java\jdk1.8.0_66\jre\bin\net.dll
+0x000007fe5a360000 - 0x000007fe5a3bc000 	C:\Windows\system32\mswsock.dll
+0x00000000761d0000 - 0x00000000761e1000 	C:\Program Files\Java\jdk1.8.0_66\jre\bin\nio.dll
+0x000007fe58ba0000 - 0x000007fe58bb2000 	C:\Users\john\.gradle\native\19\windows-amd64\native-platform.dll
+0x000007fe56a00000 - 0x000007fe56a2c000 	C:\Windows\SYSTEM32\IPHLPAPI.DLL
+0x000007fe569a0000 - 0x000007fe569aa000 	C:\Windows\SYSTEM32\WINNSI.DLL
+0x000007fe56790000 - 0x000007fe567a3000 	C:\Windows\SYSTEM32\dhcpcsvc6.DLL
+0x000007fe56770000 - 0x000007fe56788000 	C:\Windows\SYSTEM32\dhcpcsvc.DLL
+0x000007fe5a3c0000 - 0x000007fe5a3da000 	C:\Windows\SYSTEM32\CRYPTSP.dll
+0x000007fe5a040000 - 0x000007fe5a089000 	C:\Windows\system32\rsaenh.dll
+0x000007fe5a140000 - 0x000007fe5a15f000 	C:\Windows\SYSTEM32\USERENV.dll
+0x000007fe5aa30000 - 0x000007fe5aa3a000 	C:\Windows\SYSTEM32\CRYPTBASE.dll
+0x000007fe5a9d0000 - 0x000007fe5aa2c000 	C:\Windows\SYSTEM32\bcryptPrimitives.dll
+0x000007fe4e560000 - 0x000007fe4e6c3000 	C:\Windows\SYSTEM32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError -Xmx1024m -Dfile.encoding=windows-1252 -Duser.country=US -Duser.language=en -Duser.variant 
+java_command: org.gradle.launcher.daemon.bootstrap.GradleDaemon 2.4 C:\Users\john\.gradle C:\Users\john\.gradle\daemon 10800000 e1075fd6-57c9-4a92-aaa5-2c8976cd0976 -XX:MaxPermSize=256m -XX:+HeapDumpOnOutOfMemoryError -Xmx1024m -Dfile.encoding=windows-1252 -Duser.country=US -Duser.language=en -Duser.variant
+java_class_path (initial): C:\Users\john\.gradle\wrapper\dists\gradle-2.4-all\6r4uqcc6ovnq6ac6s0txzcpc0\gradle-2.4\lib\gradle-launcher-2.4.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\
+USERNAME=john
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8 , 64 bit Build 9200 (6.2.9200.16384)
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, clmul, erms, ht, tsc, tscinvbit, tscinv
+
+Memory: 4k page, physical 8079884k(6204352k free), swap 16206348k(13959752k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.66-b18) for windows-amd64 JRE (1.8.0_66-b18), built on Nov  9 2015 10:51:13 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Wed Dec 30 10:34:53 2015
+elapsed time: 1 seconds (0d 0h 0m 1s)
+

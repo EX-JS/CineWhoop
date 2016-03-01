@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+
+    >
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@drawable/round_corner_shape_white"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="Send Enquiry"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+        <LinearLayout
+
+            android:background="@drawable/round_corner_edittext_shape"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:id="@+id/linear2"
+            android:layout_margin="8dp"
+
+           android:padding="1dp"
+
+
+            >
+            <EditText
+                android:ems="18"
+                android:gravity="center"
+               android:background="@color/white"
+                android:singleLine="true"
+                android:id="@+id/name"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:hint="Name"
+                />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+
+                android:background="@color/themeColordark">
+
+            </View>
+
+            <EditText
+                android:maxLength="10"
+                android:ems="10"
+                android:inputType="phone"
+                android:gravity="center"
+               android:background="@color/white"
+                android:singleLine="true"
+                android:id="@+id/phoneNo"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:hint="Phone Number"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/round_corner_edittext_shape"
+            android:padding="1dp">
+
+            <EditText
+                android:id="@+id/messageText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="start"
+                android:hint="Message Body"
+                android:lines="8"
+                android:padding="3dp"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/submitLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            >
+
+
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/sendEmail"
+                app:backgroundTint="@color/themeColordark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Send E-Mail"
+                android:textColor="@color/white"
+                 />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

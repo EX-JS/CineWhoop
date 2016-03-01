@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@color/black"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:text="Alert !"
+            android:textStyle="bold"
+            android:paddingLeft="15dp"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+
+            android:id="@+id/textView"
+            android:background="@color/themeColordark"/>
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="Do You Want To Delete Your Cart"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/themeColordark"
+                android:textColor="@color/white"
+                android:id="@+id/deleteoffer"
+                android:text="OK"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:id="@+id/notNow"
+                android:background="@color/greyScreen"
+                android:textColor="@color/white"
+                android:text="Not Now"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

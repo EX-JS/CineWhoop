@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">Cine Whoop</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
+    <string-array name="mdrawerListArray">
+        <item>Home</item>
+        <item>My Account</item>
+        <item>Customer Support</item>
+        <item>Invite A Friend</item>
+        <item>About Us</item>
+        <item>Terms &amp; Conditions</item>
+        <item>Sign Out</item>
+    </string-array>
+
+    <string-array name="noOfSeats">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+
+    </string-array>
+    <string-array name="noOfSeatsforCreditsAdult">
+        <item>Adult</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+
+    </string-array>
+    <string-array name="noOfSeatsforCreditsChild">
+        <item>Child</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+
+    </string-array>
+    <string-array name="mdrawerListArrayimg">
+        <item>@drawable/home</item>
+        <item>@drawable/profile</item>
+        <item>@drawable/cus_sup</item>
+        <item>@drawable/refer</item>
+        <item>@drawable/about</item>
+        <item>@drawable/terms_min</item>
+        <item>@drawable/signout</item>
+    </string-array>
+    <string name="customer_support_string1">If you are facing any trouble on our App.
+        We are there to help you.
+        Your Feedback is important for us.</string>
+    <string name="btn_text_customer_sup">Email Us</string>
+    <string name="text_below_button">Email Us at enquiry@cinewhoop.com</string>
+    <string name="title_activity_my_calender">Calender</string>
+    <string name="title_activity_search">Search</string>
+    <string name="invite_a_friend_title">Invite your friends to the exiting world of CinwWhoop! in just a Click.</string>
+    <string name="facebook_app_id">1658286957765279</string>
+    <string name="user_icon">&#xe001;</string>
+    <string name="cross_icon">&#xe000;</string>
+    <string name="pass_icon">&#xe000;</string>
+    <string name="mail_icon">&#xe001;</string>
+    <string name="astrik_icon">&#xe002;</string>
+    <string name="phone_icon">&#xe000;</string>
+    <string name="user_reg">&#xe003;</string>
+    <string name="backttf">&#xe000;</string>
+    <string name="back">&#xf100;</string>
+    <string name="down">&#xf101;</string>
+    <string name="right">&#xf102;</string>
+
+    <string name="signup">Sign up </string>
+    <string name="btn_text_customer_enquiry">Enquiry</string>
+    <string name="terms1"> Find your session at one of our cinema partners. Once you purchase your ticket we will email your ticket to the email address provided. If you sign up you can also view your ticket from ‘My Account’.</string>
+    <string name="terms2">1. Some session times may not be available due to high volume of bookings and popularity of the film, please check with the cinema before booking if you are looking for a particular session time.</string>
+    <string name="terms3">2. Redeem online - Booking fee applies for online booking with the cinemas. Please check the cinema website for details
+www.hoyts.com.au \n Book in advance over the phone with the following cinemas:\n www.newfarmcinemas.com.au \n www.yataladrive-in.com.au   </string>
+    <string name="terms4">3. Restaurant coupons are for one time use only. Easy and simple just present your voucher at the venue and avail your discounts and pay directly to the venue. Please check validity on your coupon. Some venues require previous reservations as there may be  limited availability on weekends.</string>
+    <string name="terms5">4. Extra $3 per person fees applies on all 3D shows payable directly to the cinemas.</string>
+    <string name="terms6">5. All bookings subject to availability. It is recommended to book well in advance.
+Please expect a high demand for all bookings especially weekends.
+No refunds if your preferred date is unavailable.
+Merchants have the right to offer fixed availabilities for voucher holders to allow space for full paying customers.</string>
+    <string name="terms7">6. Not valid for commercial use, not for resale and not redeemable for cash</string>
+    <string name="terms8">7. Our customer support team works 24/7 to ensure you have a great experience. You can get in touch with us through “contact us” at any time and we will contact you as early as possible.</string>
+    <string name="browseMovie"><![CDATA[BROWSE MOVIES & BOOK TICKETS]]></string>
+    <string name="browseMovie1"><![CDATA[ CHOOSE YOUR DISCOUNT DINNER COUPON]]></string>
+    <string name="browseMovie2"><![CDATA[GET E-TICKET AND E-COUPON ON PHONE]]></string>
+    <string name="browseMovie3"><![CDATA[ENJOY YOUR MOVIE AND DINNER NIGHT OUT]]></string>
+</resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainDrawer"
+    android:background="@color/greyScreen"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:background="@color/themeColor">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/profile_pic_nav"
+            android:background="@drawable/profile_new"
+            android:layout_centerInParent="true"
+            />
+        <RelativeLayout
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal"
+            android:layout_below="@+id/profile_pic_nav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerInParent="true"
+                android:text="Guest"
+                android:textSize="16dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+            />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="10">
+            >
+            <ListView
+                android:scrollbars="none"
+                android:layout_marginBottom="10dp"
+                android:layout_above="@+id/loginLayout"
+                android:id="@+id/nav_left_drawer_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="@null">
+            </ListView>
+
+        </RelativeLayout>
+
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1.8">
+        <ImageView
+
+
+            android:id="@+id/imageView1"
+            android:layout_width="143dp"
+            android:layout_height="46dp"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/stampexousia2" />
+    </RelativeLayout>
+</LinearLayout>

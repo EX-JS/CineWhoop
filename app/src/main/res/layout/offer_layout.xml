@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/tool_bar"
+                layout="@layout/tool_bar">
+            </include>
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:elevation="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+
+                />
+
+            <LinearLayout
+                android:elevation="5dp"
+                android:padding="8dp"
+                android:orientation="horizontal"
+                android:layout_gravity="right|center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+
+                    android:clickable="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:id="@+id/addMovie"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Add Movie"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+
+                    />
+                <View
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="1dp"
+                    android:layout_height="30dp"
+                    android:background="@color/white"
+                    >
+
+                </View>
+                <LinearLayout
+                    android:clickable="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:id="@+id/skip"
+                    android:layout_marginLeft="3dp"
+                    android:padding="7dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Cart"
+                        android:textSize="14sp"
+                        android:textColor="@color/white"
+
+                        />
+                  <LinearLayout
+                      android:gravity="center"
+                      android:layout_gravity="center"
+                      android:background="@drawable/cart_back_round"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content">
+                      <TextView
+                          android:id="@+id/itemsincart"
+                          android:layout_gravity="center"
+                          android:gravity="center"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:ems="1"
+                          android:singleLine="true"
+                          android:text="0"
+                          android:textSize="14sp"
+                          android:textColor="@color/black"
+                          />
+                  </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                android:id="@+id/indeterminate_progress_library"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:indeterminate="true"
+                style="@style/Widget.MaterialProgressBar.ProgressBar" />
+            <TextView
+                android:layout_margin="10dp"
+                android:id="@+id/textNoResults"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               android:layout_centerInParent="true"
+                android:text="No Results Found"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:visibility="gone"
+                />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_of_offer"
+                android:scrollbars="none"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

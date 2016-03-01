@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MoviesActivity">
+    <item
+        android:id="@+id/homeIcon"
+        android:icon="@drawable/toolbar_icon"
+        android:orderInCategory="100"
+        android:title=" Home Icon"
+        app:showAsAction="always" />
+
+</menu>

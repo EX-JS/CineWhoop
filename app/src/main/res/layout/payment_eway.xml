@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/tool_bar">
+        </include>
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:elevation="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+
+            />
+
+    </FrameLayout>
+    <ScrollView
+        android:scrollbars="none"
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_centerInParent="true"
+                    android:layout_width="175dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/eway_img"
+                    />
+            </RelativeLayout>
+
+            <android.support.v7.widget.CardView
+                card_view:cardBackgroundColor="@color/black"
+                card_view:cardCornerRadius="15dp"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:padding="2dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/headerCard"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Card Information"
+                            android:textSize="25sp"
+                            android:textColor="@color/white"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/cardno1"
+                            android:gravity="center"
+                            android:textColorHint="@color/white"
+                            android:textColor="@color/white"
+                            android:hint="xxxx"
+                            android:ems="4"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:maxLength="4"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+                        <EditText
+                            android:maxLength="4"
+                            android:id="@+id/cardno2"
+                            android:gravity="center"
+                            android:textColorHint="@color/white"
+                            android:textColor="@color/white"
+                            android:singleLine="true"
+                            android:hint="xxxx"
+                            android:inputType="number"
+                            android:ems="4"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+                        <EditText
+                            android:maxLength="4"
+                            android:id="@+id/cardno3"
+                            android:gravity="center"
+                            android:textColorHint="@color/white"
+                            android:textColor="@color/white"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:hint="xxxx"
+                            android:ems="4"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+                        <EditText
+                            android:maxLength="4"
+                            android:id="@+id/cardno4"
+                            android:gravity="center"
+                            android:textColorHint="@color/white"
+                            android:textColor="@color/white"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:ems="4"
+                            android:hint="xxxx"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <RelativeLayout
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:textColor="@color/white"
+                            android:layout_centerInParent="true"
+                            android:id="@+id/monthyear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" MM/YYYY"
+                            android:textSize="16sp"/>
+                        <EditText
+                            android:maxLength="3"
+                            android:gravity="center"
+                            android:textColorHint="@color/white"
+                            android:background="@null"
+                            android:textColor="@color/white"
+                            android:layout_toEndOf="@+id/monthyear"
+                            android:textSize="16sp"
+                            android:layout_marginStart="20dp"
+                            android:singleLine="true"
+                            android:ems="3"
+                            android:inputType="number"
+                            android:id="@+id/cvnNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:hint="CVN" />
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:gravity="bottom"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <EditText
+                            android:id="@+id/nameOnCard"
+                            android:textColorHint="@color/white"
+                            android:textColor="@color/white"
+                            android:gravity="bottom"
+                            android:textSize="20sp"
+                            android:background="@null"
+                            android:hint="Name On Card"
+                            android:ems="26"
+                            android:maxLength="26"
+                            android:textAllCaps="true"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:background="@drawable/code"
+
+                            android:layout_width="40dp"
+                            android:layout_height="32dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+            <LinearLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/book_curve"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:textAlignment="center"
+                    android:id="@+id/noOfAdultTicketscredit"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+
+
+                    />
+                <Spinner
+                    android:textAlignment="center"
+                    android:id="@+id/noOfchildTicketscredit"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:layout_marginLeft="15dp"
+                        android:id="@+id/applyCreditBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Use Credit Points"
+                        android:textAllCaps="false"
+                        android:textColor="@color/themeColordark"
+                        />
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:padding="10dp"
+                        android:layout_gravity="end"
+                        android:id="@+id/detailsCredit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:text="Details"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/totalLayout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp">
+
+                <TextView
+                    android:id="@+id/headerTotalamount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:text="Amount"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/totalAmounttopay"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="$ 0.00"
+                    android:textColor="@color/themeColordark"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+            <Button
+
+                android:id="@+id/btnPayNow"
+                android:theme="@style/appbutton"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pay Now"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</LinearLayout>
+
+<!--<Button-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_alignParentTop="true"-->
+<!--android:layout_centerHorizontal="true"-->
+<!--android:layout_marginTop="82dp"-->
+<!--android:onClick="show"-->
+<!--android:text="Show" />-->
+
+<!--<TextView-->
+<!--android:id="@+id/textView1"-->
+<!--android:layout_width="wrap_content"-->
+<!--android:layout_height="wrap_content"-->
+<!--android:layout_centerVertical="true"-->
+<!--android:layout_toLeftOf="@+id/button1"-->
+<!--android:text="sample text" />-->

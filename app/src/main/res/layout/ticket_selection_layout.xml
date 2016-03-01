@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/tool_bar">
+        </include>
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:elevation="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+
+            />
+
+    </FrameLayout>
+    <LinearLayout
+        android:background="@color/black"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:id="@+id/adultCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            card_view:cardBackgroundColor="@color/greyScreen"
+            android:layout_margin="5dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+
+                    android:orientation="horizontal"
+                    android:padding="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/headerAdultTickets"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adults Tickets"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        />
+                    <TextView
+                        android:id="@+id/fixedRateAdultTickets"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="$ 0.00"
+                        android:textColor="@color/themeColordark"
+                        />
+
+                </RelativeLayout>
+                <LinearLayout
+
+                    android:orientation="horizontal"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginRight="15dp"
+                        android:layout_toLeftOf="@+id/total_adults"
+                        android:background="@color/white"
+                        android:layout_weight="5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <Spinner
+                            android:textAlignment="center"
+                            android:id="@+id/noOfAdultTickets"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+
+                            />
+                    </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_weight="2"
+                    android:id="@+id/total_adults"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_gravity="end"
+                        android:gravity="center"
+                        android:id="@+id/textTotalHeaderAdult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:text="Total"
+                        android:textColor="@color/white"
+                        />
+
+                    <TextView
+
+                        android:layout_gravity="end"
+                        android:id="@+id/amountTotalAdultTicket"
+                        android:layout_marginTop="2dp"
+                        android:gravity="end"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="15sp"
+                        android:text="$ 0.00"
+                        android:textColor="@color/themeColordark"
+                        />
+                </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:id="@+id/childCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            card_view:cardBackgroundColor="@color/greyScreen"
+            android:layout_margin="5dp"
+            android:visibility="gone"
+            >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+
+                    android:orientation="horizontal"
+                    android:padding="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/headerChildTickets"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Child Tickets"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        />
+                    <TextView
+                        android:id="@+id/fixedRateChildTicket"
+                        android:layout_alignParentRight="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="$ 0.00"
+                        android:textColor="@color/themeColordark"
+                        />
+
+                </RelativeLayout>
+                <LinearLayout
+
+                    android:orientation="horizontal"
+                    android:padding="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_marginRight="15dp"
+                        android:layout_toLeftOf="@+id/total_child"
+                        android:background="@color/white"
+                        android:layout_weight="5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content">
+                        <Spinner
+
+                            android:id="@+id/noOfChildTickets"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+
+                            />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/total_child"
+                        android:layout_alignParentRight="true"
+                        android:layout_weight="2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:layout_gravity="end"
+                            android:gravity="center"
+                            android:id="@+id/textTotalHeaderChild"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="Total"
+                            android:textColor="@color/white"
+                            />
+
+                        <TextView
+                            android:layout_gravity="end"
+                            android:id="@+id/amountTotalChildTicket"
+                            android:layout_marginTop="2dp"
+                            android:gravity="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="15sp"
+                            android:text="$ 0"
+                            android:textColor="@color/themeColordark"
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants"
+            card_view:cardBackgroundColor="@color/greyScreen"
+            android:layout_margin="5dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout
+
+                    android:orientation="horizontal"
+                    android:padding="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_centerInParent="true"
+                        android:id="@+id/totalPriceHeader"
+                        android:layout_marginRight="15dp"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        />
+                    <TextView
+                        android:id="@+id/textTotalPrise"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@+id/totalPriceHeader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textSize="18sp"
+                        android:singleLine="true"
+                        android:text="$ 0"
+                        android:textColor="@color/themeColordark"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/letsGoBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:theme="@style/appbutton"
+                    android:text="Let's Go"
+
+                    />
+
+            </LinearLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

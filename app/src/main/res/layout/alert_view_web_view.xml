@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/headerAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Terms And Conditions"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textColor="@color/themeColordark"
+        />
+    <ScrollView
+        android:layout_marginBottom="0dp"
+        android:layout_below="@id/headerAlert"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:layout_above="@+id/okBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/term1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/terms1"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                />
+            <TextView
+
+                android:id="@+id/term2Header"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/term1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/terms2"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/term2"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/term2Header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/terms3"
+
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                />
+            <TextView
+
+                android:id="@+id/term3Header"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/term2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/terms4"
+
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:id="@+id/term3"
+
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/term3Header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/terms5"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+
+                />
+            <TextView
+                android:id="@+id/term4"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/term3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/terms6"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+
+                />
+            <TextView
+                android:id="@+id/term5"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/term4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/terms7"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+
+                />
+            <TextView
+                android:id="@+id/term6"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/term5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/terms8"
+                android:layout_marginBottom="10dp"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+
+                />
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+    <android.support.v7.widget.AppCompatButton
+        app:backgroundTint="@color/themeColor"
+        android:id="@+id/okBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="I Accept the Terms &amp; Conditions"
+        />
+</RelativeLayout>
