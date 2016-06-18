@@ -1,28 +1,22 @@
 package exousiatech.cinewhoop;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import CinewhoopUtil.AlertClass;
 import CinewhoopUtil.ConfigClass;
 import CinewhoopUtil.ConnectionDetectorUtil;
-import CinewhoopUtil.DeleteCartPopUp;
+import DialogPackage.DeleteCartPopUp;
 import CinewhoopUtil.Utilclass;
 import Fragments.NavigationDrawer;
 

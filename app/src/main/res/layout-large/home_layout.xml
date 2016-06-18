@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/mainview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/tool_bar2"
+                layout="@layout/home_toolbar_custom">
+            </include>
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dp"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="5dp"
+                android:src="@drawable/bottom_icon2"
+                />
+
+        </FrameLayout>
+        <RelativeLayout
+            android:background="@color/black"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ScrollView
+                android:layout_above="@+id/nofee"
+                android:layout_centerInParent="true"
+                android:fillViewport="true"
+                android:scrollbars="none"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                5<LinearLayout
+                    android:id="@+id/fullLayout"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:clickable="true"
+                            android:background="?selectableItemBackground"
+                            android:id="@+id/movies_layout"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                android:layout_width="250dp"
+                                android:layout_height="250dp"
+                                android:src="@drawable/first250"/>
+
+                            <TextView
+                                android:id="@+id/movieHeader"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Movies"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:clickable="true"
+                            android:background="?selectableItemBackground"
+                            android:id="@+id/cinemas_layout"
+                            android:layout_marginLeft="20dp"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                               android:layout_width="250dp"
+                                android:layout_height="250dp"
+                                android:src="@drawable/second250"/>
+
+                            <TextView
+                                android:id="@+id/cinemasHeader"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cinemas"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:clickable="true"
+                            android:background="?selectableItemBackground"
+                            android:id="@+id/hot_layout"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+                                 android:layout_width="250dp"
+                                android:layout_height="250dp"
+                                android:src="@drawable/third250"/>
+
+                            <TextView
+                                android:id="@+id/hotHeader"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="What's Hot"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:clickable="true"
+                            android:background="?selectableItemBackground"
+                            android:id="@+id/comingSoonLayout"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <ImageView
+
+                                android:layout_width="250dp"
+                                android:layout_height="250dp"
+                                android:src="@drawable/fourth250"/>
+
+                            <TextView
+                                android:id="@+id/soonHeader"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+
+                                android:layout_marginTop="10dp"
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Coming Soon"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+
+            <RelativeLayout
+
+                android:id="@+id/nofee"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+
+                android:background="@color/themeColor">
+                <TextView
+                    android:layout_margin="5dp"
+                   android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                 android:text="No Booking Fee!"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
+
+
+    <fragment
+        android:id="@+id/left_drawer"
+        android:name="Fragments.NavigationDrawer"
+        android:layout_width="265dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#ffffff"
+        app:layout="@layout/drawerlayout"
+        tools:layout="@layout/drawerlayout" />
+</android.support.v4.widget.DrawerLayout>

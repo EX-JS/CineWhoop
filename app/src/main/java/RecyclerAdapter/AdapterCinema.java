@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,10 +68,9 @@ public class AdapterCinema extends RecyclerView.Adapter<AdapterCinema.CinemaView
         holder.cinemaOrGenre.setText(cinemaDetails.get(position).getCinemaName());
 
 
-        Picasso.with(context)
-                .load(ConfigClass.BASE_URL+"umax/upload/"+cinemaDetails.get(position).getLogo())
-                .into(holder.cinemaIcon);
-        Log.e("cineId", cinemaDetails.get(position).getCinemaId());
+            Picasso.with(context)
+                    .load(ConfigClass.BASE_URL+"admin/upload/"+cinemaDetails.get(position).getLogo())
+                    .into(holder.cinemaIcon);
     }
 
     @Override
@@ -104,6 +102,8 @@ public class AdapterCinema extends RecyclerView.Adapter<AdapterCinema.CinemaView
                         editor.putString("CinemaName" , cinemaDetails.get(getAdapterPosition()).getCinemaName());
                         editor.putBoolean("CinemaNameExist",true);
                         editor.putBoolean("CinemaFilterExist", true);
+                        editor.putBoolean("DateFilterExist", false);
+                        editor.putBoolean("GenreFilterExist", false);
                         editor.commit();
                         it = new Intent(context , MoviesActivity.class);
 

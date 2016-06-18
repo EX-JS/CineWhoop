@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import CinewhoopUtil.ConfigClass;
 import CinewhoopUtil.Utilclass;
 import RecyclerAdapter.AdapterSelectedMovieCinema;
 import RetrofitPackage.CineWhoopDetail;
+import RetrofitPackage.MovieTimmingDetails;
 
 /**
  * Created by jagteshwar on 26-01-2016.
@@ -25,6 +27,7 @@ public class CinemaWithSelectedMovie extends AppCompatActivity{
     ArrayList<TextView> tv;
     Utilclass typechange;
     CineWhoopDetail eachmovie;
+    MovieTimmingDetails timmingDetails;
 
     RecyclerView list_of_selectedMovieCinema;
     RecyclerView.LayoutManager layoutManager;
@@ -43,14 +46,11 @@ public class CinemaWithSelectedMovie extends AppCompatActivity{
         tv.add(toolbarTitle);
         typechange.applycustomfont(tv);
         eachmovie = (CineWhoopDetail) getIntent().getSerializableExtra("movie_detail");
-
-
-
-
+        timmingDetails = (MovieTimmingDetails) getIntent().getSerializableExtra(ConfigClass.MovieTimmings);
         layoutManager = new LinearLayoutManager(getApplicationContext());
         list_of_selectedMovieCinema = (RecyclerView) findViewById(R.id.list_of_selectedMovieCinema);
         list_of_selectedMovieCinema.setLayoutManager(layoutManager);
-        adapter = new AdapterSelectedMovieCinema(CinemaWithSelectedMovie.this , eachmovie);
+        adapter = new AdapterSelectedMovieCinema(CinemaWithSelectedMovie.this , eachmovie , timmingDetails);
         list_of_selectedMovieCinema.setAdapter(adapter);
     }
 

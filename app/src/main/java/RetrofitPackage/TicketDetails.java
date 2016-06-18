@@ -11,6 +11,10 @@ public class TicketDetails {
     @Expose
     private String response;
 
+    @SerializedName("status")
+    @Expose
+    private String status;
+
     /**
      *
      * @return
@@ -27,5 +31,13 @@ public class TicketDetails {
      */
     public void setResponse(String response) {
         this.response = response;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

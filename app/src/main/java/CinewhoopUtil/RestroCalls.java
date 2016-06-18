@@ -1,24 +1,30 @@
 package CinewhoopUtil;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.eway.payment.sdk.android.RapidAPI;
 import com.eway.payment.sdk.android.RapidConfigurationException;
 import com.eway.payment.sdk.android.beans.NVPair;
 import com.eway.payment.sdk.android.entities.EncryptItemsResponse;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Database.DatabaseHelperCinewhoop;
 import RetrofitPackage.ApiServicesClass;
 import RetrofitPackage.CinemaDetail;
 import RetrofitPackage.Coupon;
 import RetrofitPackage.OrderDetails;
 import RetrofitPackage.RetrofitUtil;
 import RetrofitPackage.TransactionStatus;
+import exousiatech.cinewhoop.HomeActivity;
 import exousiatech.cinewhoop.PayAndCheckoutClass;
 import exousiatech.cinewhoop.PaymentEway;
 import retrofit2.Call;
@@ -41,11 +47,18 @@ public class RestroCalls  {
     double priceTicketAdult = 0;
     double priceTicketChild = 0;
     double total = 0;
+    DatabaseHelperCinewhoop helperCinewhoop;
     public RestroCalls(PaymentEway paymentEway) {
         this.paymentEway = paymentEway;
+        helperCinewhoop = new DatabaseHelperCinewhoop(paymentEway);
+        sharedPreferences = paymentEway.getSharedPreferences(ConfigClass.Shared_PREF, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
     public RestroCalls(PayAndCheckoutClass payAndCheckoutClass) {
         this.payAndCheckoutClass = payAndCheckoutClass;
+        helperCinewhoop = new DatabaseHelperCinewhoop(payAndCheckoutClass);
+        sharedPreferences = payAndCheckoutClass.getSharedPreferences(ConfigClass.Shared_PREF, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 
     public void callretrofitapi(final String acesscode , Context context)
@@ -55,17 +68,15 @@ public class RestroCalls  {
         editor = sharedPreferences.edit();
         RetrofitUtil retrofitUtil = new RetrofitUtil();
         ApiServicesClass cineApiService = retrofitUtil.getRetrofit();
-        Call<TransactionStatus> paymentstatus =  cineApiService.transactionDetails(acesscode);
+        Call<TransactionStatus> paymentstatus =  cineApiService.transactionDetails(ConfigClass.UltaExousia+sharedPreferences.getString(ConfigClass.Token,""),sharedPreferences.getString(ConfigClass.SessionTime,""),acesscode);
 
         paymentstatus.enqueue(new Callback<TransactionStatus>() {
             @Override
             public void onResponse( final Response<TransactionStatus> response) {
                 result = response.body();
-                Log.e("Response" , response.body().toString());
-
                     for (int i  = 0;i<result.getTransactions().size();i++){
                         if (result.getTransactions().get(i).getTransactionStatus()){
-                            editor.putInt("transactionId" ,result.getTransactions().get(i).getTransactionID());
+                            editor.putString("transactionId" ,result.getTransactions().get(i).getTransactionID()+"");
                             editor.putBoolean("transactionidExist", true);
                             editor.apply();
                             transactionboolean = result.getTransactions().get(i).getTransactionStatus();
@@ -78,7 +89,6 @@ public class RestroCalls  {
                             paymentEway.valueforpaymentstatus(transactionboolean);
 
                         }
-                        Log.e("payment" , result.getTransactions().get(i).getTransactionStatus()+" "+result.getTransactions().get(i).getTransactionID()+" "+result.getTransactions().get(i).getTotalAmount() );
 
                 }
 
@@ -86,7 +96,6 @@ public class RestroCalls  {
 
             @Override
             public void onFailure(Throwable t) {
-                Log.e("fail" , t.getMessage());
                 result = null;
                 transactionboolean = false;
                 paymentEway.valueforpaymentstatus(transactionboolean);
@@ -96,33 +105,40 @@ public class RestroCalls  {
 
     }
     public void callretrofitforOrderdetails(final String emailid ){
-
-
         RetrofitUtil retrofitUtil = new RetrofitUtil();
         ApiServicesClass cineApiService = retrofitUtil.getRetrofit();
-        Call<OrderDetails> orderstatus =  cineApiService.orderinfo(emailid);
+        Call<OrderDetails> orderstatus =  cineApiService.orderinfo(ConfigClass.UltaExousia+sharedPreferences.getString(ConfigClass.Token,""),sharedPreferences.getString(ConfigClass.SessionTime,""), emailid);
 
         orderstatus.enqueue(new Callback<OrderDetails>() {
             @Override
             public void onResponse( final Response<OrderDetails> response) {
-                if (response.body().getTotalCredit().get(0).getCredit().equalsIgnoreCase("")) {
-                    creditpoints = "";
-                    Log.e("credit1" , creditpoints);
+                if (response.body().getStatus().equals("Access authorized")) {
+                    if (response.body().getTotalCredit().getCredit().equalsIgnoreCase("")) {
+                        creditpoints = "";
+                        paymentEway.valueOfCreditPoints(creditpoints);
+                    } else {
+                        creditpoints = response.body().getTotalCredit().getCredit();
+                        paymentEway.valueOfCreditPoints(creditpoints);
 
-                    paymentEway.valueOfCreditPoints(creditpoints);
+                    }
                 }else {
-                    creditpoints = response.body().getTotalCredit().get(0).getCredit();
-                    Log.e("credit2" , creditpoints);
-                    paymentEway.valueOfCreditPoints(creditpoints);
-
+                    Toast.makeText(paymentEway, "Please login again , You have been logged in with some other device", Toast.LENGTH_LONG).show();
+                    editor.clear();
+                    editor.commit();
+                    if (FacebookSdk.isInitialized()){
+                        LoginManager.getInstance().logOut();
+                    }
+                    helperCinewhoop.deleteTableOffer();
+                    helperCinewhoop.deleteTable();
+                    Intent intent=new Intent(paymentEway,HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    paymentEway.startActivity(intent);
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
                 creditpoints = "";
-                Log.e("fail" , creditpoints);
-
                 paymentEway.valueOfCreditPoints(creditpoints);
 
             }
@@ -155,18 +171,31 @@ public class RestroCalls  {
     public void couponcallretro(final String acesscode , Context context){
         RetrofitUtil retrofitUtil = new RetrofitUtil();
         ApiServicesClass cineApiService = retrofitUtil.getRetrofit();
-        Call<List<Coupon>> couponStatus =  cineApiService.couponcall(acesscode);
+        Call<List<Coupon>> couponStatus =  cineApiService.couponcall(ConfigClass.UltaExousia+sharedPreferences.getString(ConfigClass.Token,""),sharedPreferences.getString(ConfigClass.SessionTime,""),acesscode);
         couponStatus.enqueue(new Callback<List<Coupon>>() {
             @Override
             public void onResponse(Response<List<Coupon>> response) {
-                Log.e("Response", response.body().get(0).getCouponOff());
-                payAndCheckoutClass.valueforcoupontoset(response.body().get(0).getCouponOff());
+                if (response.body().get(0).getStatus().equalsIgnoreCase("Access authorized")){
+                    Log.e("couponOff", " "+response.body().get(0).getCouponOff());
+                    payAndCheckoutClass.valueforcoupontoset(response.body().get(0).getCouponOff());
+                }else {
+                    Toast.makeText(payAndCheckoutClass, "Please login again , You have been logged in with some other device", Toast.LENGTH_LONG).show();
+                    editor.clear();
+                    editor.commit();
+                    if (FacebookSdk.isInitialized()){
+                        LoginManager.getInstance().logOut();
+                    }
+                    helperCinewhoop.deleteTableOffer();
+                    helperCinewhoop.deleteTable();
+                    Intent intent=new Intent(payAndCheckoutClass,HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    payAndCheckoutClass.startActivity(intent);
+                }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Log.e("fail", t.getMessage() + " ");
-
+                Log.e("failure", t.getMessage()+" ");
                 payAndCheckoutClass.valueforcoupontoset("");
 
             }
@@ -178,17 +207,15 @@ public class RestroCalls  {
         sharedPreferences = paymentEway.getSharedPreferences(ConfigClass.Shared_PREF, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         this.total = total;
-        Log.e("ratesadult" ,sharedPreferences.getString("ratesforAdultTicket","0") );
-        Log.e("rateschild" ,sharedPreferences.getString("ratesforChildTicket","0") );
 
         priceTicketAdult = Double.parseDouble(sharedPreferences.getString("ratesforAdultTicket","0"));
         priceTicketChild = Double.parseDouble(sharedPreferences.getString("ratesforChildTicket","0"));
         double totalamounttobesubtracted = (countnoofChildscredit*priceTicketChild)+(countnoofAdultscredit*priceTicketAdult);
-        Log.e("amount ghat" , totalamounttobesubtracted+"");
-        Log.e("amount ghat2" , this.total+"");
 
         double totalaftersubtraction =  this.total-totalamounttobesubtracted;
-        Log.e("resp amount1" ,totalaftersubtraction+"" );
+        if (totalaftersubtraction<0){
+            totalaftersubtraction=0;
+        }
         paymentEway.amounttobededucted(totalaftersubtraction);
             }
     }

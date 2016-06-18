@@ -3,15 +3,16 @@ package RecyclerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import CinewhoopUtil.ConfigClass;
 import CinewhoopUtil.Utilclass;
 import RetrofitPackage.CineWhoopDetail;
+import RetrofitPackage.MovieTimmingDetails;
 import exousiatech.cinewhoop.R;
 import exousiatech.cinewhoop.ShowTimmingsClass;
 
@@ -23,17 +24,18 @@ public class AdapterSelectedMovieCinema extends RecyclerView.Adapter<AdapterSele
     LayoutInflater layoutInflater;
     Utilclass typefaceChange;
     CineWhoopDetail eachmovie;
+    MovieTimmingDetails timmingDetails;
 
     String str[];
 
-    public AdapterSelectedMovieCinema(Context context, CineWhoopDetail eachmovie){
+    public AdapterSelectedMovieCinema(Context context, CineWhoopDetail eachmovie, MovieTimmingDetails timmingDetails){
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         typefaceChange = new Utilclass(this.context);
         this.eachmovie = eachmovie;
+        this.timmingDetails = timmingDetails;
 
         String string =  eachmovie.getCinema_id();
-        Log.e("id", string);
         str = string.split(",");
     }
     @Override
@@ -47,7 +49,9 @@ public class AdapterSelectedMovieCinema extends RecyclerView.Adapter<AdapterSele
     public void onBindViewHolder(selectedMovieCinemaViewHolder holder, int position) {
         typefaceChange.changetypeface(holder.genreOrCinema);
         typefaceChange.changetypeface(holder.selectcinemaWithMovie);
+        holder.genreOrCinema.setText(timmingDetails.getData().get(position).getCinemaName());
 
+        /*
             if (str[position].equalsIgnoreCase("1") ){
               holder.genreOrCinema.setText("Hoyts Stafford");
             }else if (str[position].equalsIgnoreCase("2") ){
@@ -61,12 +65,12 @@ public class AdapterSelectedMovieCinema extends RecyclerView.Adapter<AdapterSele
             }else if (str[position].equalsIgnoreCase("6") ){
                 holder.genreOrCinema.setText("New Farm Cinemas");
 
-        }
+        }*/
     }
 
     @Override
     public int getItemCount() {
-        return str.length;
+        return timmingDetails.getData().size();
     }
 
 
@@ -82,12 +86,12 @@ public class AdapterSelectedMovieCinema extends RecyclerView.Adapter<AdapterSele
             layoutClick.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.e("Tag", genreOrCinema.getText().toString());
                     selectcinemaWithMovie.getText();
 
                     Intent it = new Intent(context , ShowTimmingsClass.class);
             it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             it.putExtra("movie_Time_detail", eachmovie);
+            it.putExtra(ConfigClass.TimmingsCinema,timmingDetails.getData().get(getAdapterPosition()) );
             it.putExtra("cinema_name", genreOrCinema.getText().toString());
             context.startActivity(it);
                 }

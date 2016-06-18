@@ -39,10 +39,8 @@ public static String QUERYOFFER = "create table " + TABLENAMEOffer + " ( " +  Of
         try {
             db.execSQL(QUERY);
             db.execSQL(QUERYOFFER);
-            Log.e("Tableeeeeeeeeeeeeee", "table Created");
 
         }catch (Exception e){
-            Log.e("error exp" , e.getMessage());
         }
     }
 

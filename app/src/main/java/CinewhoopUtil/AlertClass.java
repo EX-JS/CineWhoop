@@ -6,11 +6,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 import exousiatech.cinewhoop.HomeActivity;
+import exousiatech.cinewhoop.MyProfileActivity;
 
 /**
  * Created by Jagteshwar.Singh on 9/15/2015.
  */
 public class AlertClass {
+//    commont
     public void showAlertDialog(Context context,  String message,
                                 Boolean status) {
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -27,7 +29,7 @@ public class AlertClass {
 
         alertDialog.show();
     }
-    public void showAlertDialogforhome(final Context context,  String message,
+    public void  showAlertDialogforhome(final Context context,  String message,
                                 Boolean status) {
         final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
 
@@ -38,7 +40,8 @@ public class AlertClass {
             alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
                     alertDialog.dismiss();
-                    Intent it = new Intent(context , HomeActivity.class);
+                    Intent it = new Intent(context , MyProfileActivity.class);
+                    it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     context.startActivity(it);
                 }
             });

@@ -156,7 +156,7 @@
                             android:text=" MM/YYYY"
                             android:textSize="16sp"/>
                         <EditText
-                            android:maxLength="3"
+                            android:maxLength="4"
                             android:gravity="center"
                             android:textColorHint="@color/white"
                             android:background="@null"
@@ -165,7 +165,7 @@
                             android:textSize="16sp"
                             android:layout_marginStart="20dp"
                             android:singleLine="true"
-                            android:ems="3"
+                            android:ems="4"
                             android:inputType="number"
                             android:id="@+id/cvnNumber"
                             android:layout_width="wrap_content"
@@ -189,7 +189,7 @@
                             android:ems="26"
                             android:maxLength="26"
                             android:textAllCaps="true"
-                            android:inputType="text"
+                            android:inputType="textCapCharacters"
                             android:singleLine="true"
                             android:layout_weight="1"
                             android:layout_width="0dp"

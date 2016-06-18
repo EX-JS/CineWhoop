@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,7 @@ public class ComingSoonMovies extends AppCompatActivity {
     ConnectionDetectorUtil connectionDetectorUtil;
     Call<List<SoonDetail>> cominfSoonDetails;
     MaterialProgressBar progressBar;
+    SimpleDateFormat mDateformat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,6 @@ public class ComingSoonMovies extends AppCompatActivity {
             }
         });
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

@@ -30,9 +30,8 @@ public class BookingScreenFragment extends Fragment {
         Bundle imagesBundle = getArguments();
         if (imagesBundle!=null){
             String str = imagesBundle.getString("imageAtIndex");
-            Log.e("value",str);
             Picasso.with(getActivity())
-                    .load(ConfigClass.BASE_URL + "umax/upload/" + str)
+                    .load(ConfigClass.BASE_URL + "admin/upload/" + str)
                     .placeholder(R.drawable.preloader)
                     .into(movieback);
         }

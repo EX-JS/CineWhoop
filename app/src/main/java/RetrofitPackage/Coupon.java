@@ -11,6 +11,10 @@ public class Coupon {
     @Expose
     private String couponOff;
 
+    @SerializedName("status")
+    @Expose
+    private String status;
+
     /**
      * 
      * @return
@@ -29,4 +33,11 @@ public class Coupon {
         this.couponOff = couponOff;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

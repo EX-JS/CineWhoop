@@ -55,7 +55,7 @@
                         android:id="@+id/headerAdultTickets"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Adults Tickets"
+                        android:text="Adult Tickets"
                         android:textSize="18sp"
                         android:textColor="@color/white"
                         />

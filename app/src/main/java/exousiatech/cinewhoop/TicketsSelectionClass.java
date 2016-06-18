@@ -130,8 +130,6 @@ public class TicketsSelectionClass extends AppCompatActivity implements AdapterV
         cinemadetails.enqueue(new Callback<List<CinemaDetail>>() {
             @Override
             public void onResponse(Response<List<CinemaDetail>> response) {
-
-                Log.e("Resp" , response.body().toString());
                 for (int i = 0;i<response.body().size();i++){
                 if (cinemaname.equalsIgnoreCase(response.body().get(i).getCinemaName())){
                     statusTicket=  response.body().get(i).getTicket_status();
@@ -252,7 +250,7 @@ public class TicketsSelectionClass extends AppCompatActivity implements AdapterV
 
 
         childCard.setVisibility(View.GONE);
-        headerAdultTickets.setText("Ticket");
+        headerAdultTickets.setText("Ticket's");
         fixedRateAdultTickets.setText(String.format("$ %.2f" , priceTicketAdult));
 
         pDialog.dismiss();

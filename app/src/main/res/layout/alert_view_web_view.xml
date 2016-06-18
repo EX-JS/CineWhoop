@@ -126,6 +126,7 @@
     </ScrollView>
     <android.support.v7.widget.AppCompatButton
         app:backgroundTint="@color/themeColor"
+        style="@style/appbutton2"
         android:id="@+id/okBtn"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"

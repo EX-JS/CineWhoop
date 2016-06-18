@@ -3,7 +3,6 @@ package RecyclerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,7 @@ public class AdapterShowTimmings extends RecyclerView.Adapter<AdapterShowTimming
 
 
 
-    public AdapterShowTimmings(Context context, List<String> eachmovie, CineWhoopDetail movieDetails, String cinemaName, String cinemaid){
+    public AdapterShowTimmings(Context context, List<String> eachmovie, CineWhoopDetail movieDetails, String cinemaName, String cinemaid , String cinemaTimmings){
         this.context = context;
         layoutInflater = LayoutInflater.from(context);
         typefaceChange = new Utilclass(this.context);
@@ -48,7 +47,8 @@ public class AdapterShowTimmings extends RecyclerView.Adapter<AdapterShowTimming
         for (int i = 0;i<times.size();i++){
             stringBuilder.append(times.get(i));
         }
-        stringofTimmings = stringBuilder.toString();
+//        stringofTimmings = stringBuilder.toString();
+        stringofTimmings = cinemaTimmings;
         timmingArr = stringofTimmings.split(";");
         for (int x=0;x<timmingArr.length;x++){
             try {
@@ -56,7 +56,6 @@ public class AdapterShowTimmings extends RecyclerView.Adapter<AdapterShowTimming
                 SimpleDateFormat _24HourSDF = new SimpleDateFormat("HH:mm");
                 SimpleDateFormat _12HourSDF = new SimpleDateFormat("hh:mm a");
                 Date _24HourDt = _24HourSDF.parse(_24HourTime);
-                Log.e("time a p" , _12HourSDF.format(_24HourDt));
                 timmingstoset.add(_12HourSDF.format(_24HourDt));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -74,10 +73,8 @@ public class AdapterShowTimmings extends RecyclerView.Adapter<AdapterShowTimming
     public void onBindViewHolder(ShowTimmingsViewHolder holder, int position) {
         typefaceChange.changetypeface(holder.genreOrCinema);
         typefaceChange.changetypeface(holder.selectshowtimmings);
-
-
-
         holder.genreOrCinema.setText(timmingstoset.get(position));
+        holder.selectshowtimmings.setVisibility(View.GONE);
     }
 
     @Override
@@ -95,9 +92,9 @@ public class AdapterShowTimmings extends RecyclerView.Adapter<AdapterShowTimming
             super(itemView);
             selectshowtimmings = (TextView)itemView.findViewById(R.id.selectType);
             genreOrCinema = (TextView)itemView.findViewById(R.id.cinemaOrGenre);
-            layoutClick = (RelativeLayout)itemView.findViewById(R.id.layoutClick);
-            layoutClick.setOnClickListener(this);
-            layoutClick.setOnClickListener(this);
+//            layoutClick = (RelativeLayout)itemView.findViewById(R.id.layoutClick);
+//            layoutClick.setOnClickListener(this);
+//            layoutClick.setOnClickListener(this);
         }
 
         @Override
@@ -106,9 +103,6 @@ public class AdapterShowTimmings extends RecyclerView.Adapter<AdapterShowTimming
             it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             switch (v.getId()){
                 case R.id.layoutClick:
-                    Log.e("time", genreOrCinema.getText().toString());
-                    Log.e("time", movieDetails.getMovieId() + " " + movieDetails.getTitle()+ " " +cinemaName);
-
                     it.putExtra("cinemaIDtoSend", cinemaId);
                     it.putExtra("cinemaName" , cinemaName);
                     it.putExtra("MovieId" , movieDetails.getMovieId() );

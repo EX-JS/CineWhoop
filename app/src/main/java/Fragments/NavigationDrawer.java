@@ -69,7 +69,7 @@ public class NavigationDrawer extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+///////////
         sharedPreferences = getActivity().getSharedPreferences(ConfigClass.Shared_PREF, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         acessDatabase = new DatabaseHelperCinewhoop(getActivity());
@@ -122,6 +122,8 @@ public class NavigationDrawer extends Fragment implements View.OnClickListener {
                     .load(uri)
                     .transform(new CropSquareTransformation())
                     .into(profilePicNav);
+        }else {
+            profilePicNav.setImageResource(R.drawable.profile_new);
         }
     }
     private void diplayScreen(int position) {

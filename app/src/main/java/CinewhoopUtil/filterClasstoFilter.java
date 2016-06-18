@@ -1,6 +1,5 @@
 package CinewhoopUtil;
 
-import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 
 import RetrofitPackage.CineWhoopDetail;
+import RetrofitPackage.Datum;
+import RetrofitPackage.MovieTimmingDetails;
 
 /**
  * Created by jagteshwar on 30-01-2016.
@@ -16,7 +17,7 @@ import RetrofitPackage.CineWhoopDetail;
 public class filterClasstoFilter {
 
     SimpleDateFormat mDateformat;
-    Date min ,max , test;
+    Date min, max, test;
 
     public ArrayList<CineWhoopDetail> filter(List<CineWhoopDetail> listFilter, String query) {
         query = query.toLowerCase();
@@ -26,14 +27,12 @@ public class filterClasstoFilter {
 
 
             if (model != null) {
-//                    Log.e("Person",model.getName());
                 final String text = model.getCinema_id().toLowerCase();
                 if (text.contains(query)) {
                     filteredContactList.add(model);
                 }
 
             } else {
-                Log.e("Person", "null");
             }
 
         }
@@ -42,6 +41,7 @@ public class filterClasstoFilter {
         }
         return filteredContactList;
     }
+
     public ArrayList<CineWhoopDetail> filterbydatemethod(List<CineWhoopDetail> listFilter, String query) {
         query = query.toLowerCase();
 
@@ -52,21 +52,18 @@ public class filterClasstoFilter {
 
             if (model != null) {
 
-//                    Log.e("Person",model.getName());
                 final String datestrmin = model.getReleaseDate().toLowerCase();
                 final String datestrmax = model.getMovie_expiry_date().toLowerCase();
                 test = convertStrToDate(query);
                 min = convertStrToDate(datestrmin);
                 max = convertStrToDate(datestrmax);
-                Log.e("dates" ,test.toString() +" " +min.toString() +" " +max.toString() +" " +test.compareTo(min)+" " +test.compareTo(max));
 //
-                if (min.compareTo(test) * test.compareTo(max) >= 0){
+                if (min.compareTo(test) * test.compareTo(max) >= 0) {
                     filteredContactList.add(model);
                 }
 
 
             } else {
-                Log.e("Person", "null");
             }
 
         }
@@ -86,7 +83,7 @@ public class filterClasstoFilter {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-       return date;
+        return date;
     }
 
     public ArrayList<CineWhoopDetail> filterbyGenremethod(List<CineWhoopDetail> listFilter, String query) {
@@ -97,14 +94,35 @@ public class filterClasstoFilter {
 
 
             if (model != null) {
-//                    Log.e("Person",model.getName());
                 final String text = model.getCategory().toLowerCase();
                 if (text.contains(query)) {
                     filteredContactList.add(model);
                 }
 
             } else {
-                Log.e("Person", "null");
+            }
+
+        }
+        if (query.equals("")) {
+            filteredContactList.add(0, null);
+        }
+        return filteredContactList;
+    }
+
+    public List<Datum> filterbyCinemaforTimmings(List<Datum> listFilter, String query) {
+        query = query.toLowerCase();
+        final List<Datum> filteredContactList = new ArrayList<>();
+
+        for (Datum model : listFilter) {
+
+
+            if (model != null) {
+                final String text = model.getCinemaName().toLowerCase();
+                if (text.equalsIgnoreCase(query)) {
+                    filteredContactList.add(model);
+                }
+
+            } else {
             }
 
         }

@@ -33,8 +33,6 @@ public class AdapterOffersPayandCheckout extends RecyclerView.Adapter<AdapterOff
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Typeface typeface2;
-    ArrayList<String> nameofOffer = new ArrayList<>();
-    ArrayList<String> priceofOffer = new ArrayList<>();
     PayAndCheckoutClass payAndCheckoutClass;
 
 

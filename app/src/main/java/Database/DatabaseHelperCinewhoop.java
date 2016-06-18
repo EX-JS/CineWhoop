@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -21,9 +20,7 @@ public class DatabaseHelperCinewhoop {
         try {
             dbcinewhoop = new DatabaseCinewhoop(ct );
             sqdb = dbcinewhoop.getWritableDatabase();
-            Log.e("ddddddddddddddddd", "Data Base and table created");
         }catch (Exception e){
-            Log.e("Error in connection" , e.getMessage());
         }
     }
     public boolean insertDataintoTable(String filterName , String filterValue){
@@ -37,7 +34,6 @@ public class DatabaseHelperCinewhoop {
                 flag = true;
             }
         }catch (Exception e){
-            Log.e("Error inserting" , e.getMessage());
         }
         return flag;
     }
@@ -53,7 +49,6 @@ public class DatabaseHelperCinewhoop {
                 flag = true;
             }
         }catch (Exception e){
-            Log.e("Error inserting" , e.getMessage());
         }
         return flag;
     }

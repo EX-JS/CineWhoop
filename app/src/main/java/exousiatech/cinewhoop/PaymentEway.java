@@ -112,7 +112,6 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
         alert = new AlertClass();
         sharedPreferences = getSharedPreferences(ConfigClass.Shared_PREF, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
-        Log.e("move", getIntent().getDoubleExtra("total", 0) + " ");
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         tv = new ArrayList<>();
         setSupportActionBar(toolbar);
@@ -190,7 +189,6 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.e("count", count + "");
                 if (cardno1.getText().toString().length() == 4) {
                     cardno2.requestFocus();
                 }
@@ -209,7 +207,6 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.e("count", count + "");
                 if (cardno2.getText().toString().length() == 4) {
                     cardno3.requestFocus();
                 }
@@ -229,7 +226,6 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.e("count", count + "");
                 if (cardno3.getText().toString().length() == 4) {
                     cardno4.requestFocus();
                 }
@@ -248,7 +244,6 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.e("count", count + " " + before + " " + start);
                 if (cardno4.getText().toString().length() == 4) {
                     cvnNumber.requestFocus();
                 }
@@ -267,8 +262,7 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.e("count", count + " " + before + " " + start);
-                if (cvnNumber.getText().toString().length() == 3) {
+                if (cvnNumber.getText().toString().length() == 4) {
                     nameOnCard.requestFocus();
                 }
             }
@@ -352,7 +346,6 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
                     Snackbar snackbar = Snackbar.make(btnPayNow , "Please Select a valid number of Child Tickets" , Snackbar.LENGTH_SHORT);
                     snackbar.show();
                 }else {
-                    Log.e("email" ,sharedPreferences.getString("email" , ""));
                     pDialog.show();
                     restroCalls.callretrofitforOrderdetails(sharedPreferences.getString("email" , ""));
                 }
@@ -360,55 +353,49 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.btnPayNow:
                 double totalamn = 0;
-                pdfAsync.collectDataAndCallRetrofit();
-//                String amount[] = totalamounttopaystr.split(" ");
-//                if (amount.length > 0) {
-//                    String totalam = amount[1];
-//                    totalamn = Double.parseDouble(totalam);
-//                    paymentamn = totalamn * 100;
-//                }
-//                if (totalamn>0.0){
-//                    editor.putBoolean("fullpaymentcredit",false);
-//                    editor.commit();
-//                }else
+                String amount[] = totalamounttopaystr.split(" ");
+                if (amount.length > 0) {
+                    String totalam = amount[1];
+                    totalamn = Double.parseDouble(totalam);
+                    paymentamn = totalamn * 100;
+                }
+                if (totalamn>0.0){
+                    editor.putBoolean("fullpaymentcredit",false);
+                    editor.commit();
+                }
 //                if (sharedPreferences.getBoolean("fullpaymentcredit",false)){
 //                    pdfAsync.collectDataAndCallRetrofit();
-//                }else if (TextUtils.isEmpty(cardno1.getText().toString()) || TextUtils.isEmpty(cardno2.getText().toString())
-//                        || TextUtils.isEmpty(cardno3.getText().toString()) || TextUtils.isEmpty(cardno4.getText().toString())
-//                        || TextUtils.isEmpty(cvnNumber.getText().toString()) || TextUtils.isEmpty(monthyear.getText().toString()) || TextUtils.isEmpty(nameOnCard.getText().toString())) {
-//                    for (int i = 1; i < tv.size(); i++) {
-//                        if (TextUtils.isEmpty(tv.get(i).getText()
-//                        )) {
-//                            tv.get(i).setError("This Field is Required");
-//                            tv.get(i).requestFocus();
-//                        }
-//                    }
-//
-//                } else {
-//                    pDialog.show();
-//                    new AsyncPaymentTask().execute();
-//
-//                }
+//                }else
+                if (TextUtils.isEmpty(cardno1.getText().toString()) || TextUtils.isEmpty(cardno2.getText().toString())
+                        || TextUtils.isEmpty(cardno3.getText().toString()) || TextUtils.isEmpty(cardno4.getText().toString())
+                        || TextUtils.isEmpty(cvnNumber.getText().toString()) || TextUtils.isEmpty(monthyear.getText().toString()) || TextUtils.isEmpty(nameOnCard.getText().toString())) {
+                    for (int i = 1; i < tv.size(); i++) {
+                        if (TextUtils.isEmpty(tv.get(i).getText()
+                        )) {
+                            tv.get(i).setError("This Field is Required");
+                            tv.get(i).requestFocus();
+                        }
+                    }
+
+                } else {
+                    pDialog.show();
+                    new AsyncPaymentTask().execute();
+
+                }
                 break;
         }
     }
 
     @Override
     public void valueforpaymentstatus(boolean status) {
-
+        if (pDialog != null) {
+            pDialog.dismiss();
+        }
         if (!status) {
-            if (pDialog != null) {
-                pDialog.dismiss();
-            }
             Toast.makeText(PaymentEway.this, "Payment Failed", Toast.LENGTH_SHORT).show();
-            Log.e("Payment  nai Successful", "move forward");
         } else {
-            if (pDialog != null) {
-                pDialog.dismiss();
-            }
-            Toast.makeText(PaymentEway.this, "Payment Done", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PaymentEway.this, "Payment Done, Please wait while we are processing ", Toast.LENGTH_SHORT).show();
             pdfAsync.collectDataAndCallRetrofit();
-            Log.e("Payment Successful", "move forward");
         }
     }
 
@@ -427,14 +414,13 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
                 if (pDialog != null){
                     pDialog.dismiss();
                 }
-                Snackbar snackbar = Snackbar.make(btnPayNow  ,"You have do not qualify for this, Please Click Details for more Information",Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(btnPayNow  ,"You do not qualify for this, Please Click Details for more Information",Snackbar.LENGTH_LONG);
                 snackbar.show();
             }else {
                 int child = countnoofChildscredit*150;
                 int adult = countnoofAdultscredit*200;
                 int totalpointsfromSelection = adult+child;
                 if (cpoints>totalpointsfromSelection){
-                    Log.e("chal gia" , "retrofit");
                     debitPoints = totalpointsfromSelection;
                     editor.putBoolean("debitExists" , true);
                     editor.putInt("totalpointsfromSelection",totalpointsfromSelection);
@@ -442,11 +428,10 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
                     restroCalls.callretrofitdataforrates(cpoints ,totalpointsfromSelection,getIntent().getDoubleExtra("total", 0),countnoofChildscredit,countnoofAdultscredit);
 
                 }else {
-                    Log.e("khatne" , "points jada ban lai");
                     if (pDialog != null){
                         pDialog.dismiss();
                     }
-                    Snackbar snackbar = Snackbar.make(btnPayNow  ,"You have do not qualify for this, Please Click Details for more Information",Snackbar.LENGTH_LONG);
+                    Snackbar snackbar = Snackbar.make(btnPayNow  ,"You do not qualify for this, Please Click Details for more Information",Snackbar.LENGTH_LONG);
                     snackbar.show();
                 }
             }
@@ -460,7 +445,6 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
             pDialog.dismiss();
         }
         if (amount == 0.0){
-            Log.e("kujh nai ghatya", "aukha");
             if (sharedPreferences.getBoolean("debitExists",false)){
                 editor.putBoolean("fullpaymentcredit", true);
                 editor.commit();
@@ -491,7 +475,6 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
                     countnoofChildscredit = 0;
                 }else {
                     countnoofChildscredit = Integer.parseInt( parent.getItemAtPosition(position).toString());
-
                 }
                 break;
         }
@@ -525,7 +508,6 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
                 double totalamn = Double.parseDouble(totalam);
                 paymentamn = totalamn * 100;
             }
-            Log.e("amount", (int) paymentamn + " ");
             payment.setTotalAmount((int) paymentamn);
             cardDetails.setName(cardName);
 //
@@ -547,13 +529,10 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
 
 
                 if (response.getErrors() == null) {
-                    Log.e("acesscode", response.getAccessCode() + " " + response.getStatus());
-
                     return (response.getAccessCode());
                 } else {
                     errorMessage = "error" + restroCalls.errorHandler(RapidAPI.userMessage(Locale.getDefault().getLanguage(), response.getErrors()).getErrorMessages());
-                    Log.e("errormessaage", errorMessage);
-
+                    Log.e("error in eway" ,errorMessage+" ");
                 }
 
             } catch (RapidConfigurationException e) {
@@ -568,25 +547,19 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
             if (s.contains("error")) {
                 if (pDialog != null) {
                     pDialog.dismiss();
                 }
-                Log.e("error", s);
                 Toast.makeText(PaymentEway.this, "Some Error Occurred. Please try again ", Toast.LENGTH_SHORT).show();
 
             } else {
+                Toast.makeText(PaymentEway.this, "Please wait while we are confirming payment", Toast.LENGTH_SHORT).show();
+
                 restroCalls.callretrofitapi(s, PaymentEway.this);
-
-
             }
-
         }
-
-
     }
-
 
     private void fetchDataFromForm() {
         cardName = restroCalls.noNullObjects(nameOnCard.getText().toString());
@@ -600,8 +573,6 @@ public class PaymentEway extends AppCompatActivity implements View.OnClickListen
             monthyear.setError("Please select the expiry month & year");
         }
     }
-
-
 }
 
 interface Paymentinterface {

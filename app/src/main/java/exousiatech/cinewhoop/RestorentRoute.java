@@ -6,6 +6,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -66,10 +67,11 @@ public class RestorentRoute extends AppCompatActivity implements OnMapReadyCallb
 
     @Override
     public void onMapReady(final GoogleMap googleMap) {
+        Log.e("LatLong", eachOffer.getLatitude()+" "+eachOffer.getLongitude());
         googleMap.addMarker(new MarkerOptions()
                 .position(new LatLng(eachOffer.getLatitude(), eachOffer.getLongitude()))
                 );
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(eachOffer.getLatitude(), eachOffer.getLongitude()) ).zoom(15).build();
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(eachOffer.getLatitude(), eachOffer.getLongitude()) ).zoom(10).build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 

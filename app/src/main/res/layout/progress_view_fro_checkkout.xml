@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+
+        android:id="@+id/indeterminate_progress_library"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+
+        style="@style/Widget.MaterialProgressBar.ProgressBar" />
+
+    <TextView
+        android:layout_margin="10dp"
+        android:textColor="@color/white"
+        android:layout_below="@+id/indeterminate_progress_library"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="We have successfully received your payment. We are getting in touch with Cinemas to process your tickets. This may take several seconds, please be patient."
+        />
+
+</RelativeLayout>

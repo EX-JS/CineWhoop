@@ -21,7 +21,7 @@ public class ViewPagerBooking extends FragmentStatePagerAdapter {
         super(fm);
         this.images = images;
     }
-
+//////////////////////
     @Override
     public Fragment getItem(int position) {
         fragment = new BookingScreenFragment();

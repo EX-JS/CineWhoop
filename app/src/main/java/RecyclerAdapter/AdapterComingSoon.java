@@ -51,7 +51,7 @@ public class AdapterComingSoon extends RecyclerView.Adapter<AdapterComingSoon.So
         holder.offerName.setText(SoonDetails.get(position).getName());
         holder.getoffer.setText(SoonDetails.get(position).getCategory());
         Picasso.with(context)
-                .load(ConfigClass.BASE_URL + "umax/upload/" + SoonDetails.get(position).getImage().get(0))
+                .load(ConfigClass.BASE_URL + "admin/upload/" + SoonDetails.get(position).getImage().get(0))
                 .placeholder(R.drawable.preloader)
                 .into(holder.offerBackground);
 

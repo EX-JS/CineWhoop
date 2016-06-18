@@ -130,19 +130,14 @@ public class FilterByClass extends AppCompatActivity implements View.OnClickList
             @Override
             public void onDateSet(DatePickerDialog dialog, int year, int monthOfYear, int dayOfMonth) {
                 mCalendar.set(year, monthOfYear, dayOfMonth);
-                Toast.makeText(FilterByClass.this, "" + mDateFormat.format(mCalendar.getTime()), Toast.LENGTH_LONG).show();
-
                 boolean flag =  acessDataBase.insertDataintoTable("Filterbydate", mDateFormat.format(mCalendar.getTime()));
                 if (flag){
 
                     editor.putBoolean("DateFilterExist", true);
+                    editor.putBoolean("CinemaFilterExist", false);
+                    editor.putBoolean("GenreFilterExist", false);
                     editor.commit();
-//                        datafromDatabase = acessDataBase.selectData();
-//                        for (int i =0;i<datafromDatabase.size();i++){
-//                            Log.e("value" ,datafromDatabase.get(i));
-//                        }
                     dateIntent = new Intent(getApplicationContext() , MoviesActivity.class);
-
                     dateIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(dateIntent);
                     finish();

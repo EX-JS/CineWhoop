@@ -29,6 +29,7 @@ public class OfferDetail implements Serializable {
     @Expose
     private String websiteUrl;
     private String offer_id;
+    private String type;
     private double latitude;
     private double longitude;
 
@@ -152,5 +153,13 @@ public class OfferDetail implements Serializable {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

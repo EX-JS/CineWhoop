@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:scrollbars="none">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/tool_bar"
+                layout="@layout/tool_bar"></include>
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="5dp"
+                android:ellipsize="marquee"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:requiresFadingEdge="horizontal"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="18sp"
+
+                />
+
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
+                    android:descendantFocusability="blocksDescendants"
+                    android:orientation="vertical"
+                    card_view:cardBackgroundColor="@color/greyScreen">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+
+                        android:descendantFocusability="blocksDescendants">
+
+                        <FrameLayout
+                            android:id="@+id/movieBackground_booking"
+                            android:layout_width="match_parent"
+                            android:layout_height="270dp">
+
+                            <android.support.v4.view.ViewPager
+                                android:id="@+id/ViewPager_movieBack"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </android.support.v4.view.ViewPager>
+                            <com.viewpagerindicator.CirclePageIndicator
+                                android:id="@+id/indicator"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="bottom|center"
+                                android:padding="10dp" />
+
+                        </FrameLayout>
+
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="90dp"
+                            android:layout_below="@+id/movieBackground_booking"
+
+                            android:layout_gravity="bottom"
+                            android:background="@color/themeColor"
+
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_toLeftOf="@+id/rating_layout_bookscreen"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+
+                                    android:id="@+id/linearTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="3dp"
+                                    android:descendantFocusability="blocksDescendants"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/movieName"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:text="Movie Name"
+                                        android:textColor="#fff"
+                                        android:textSize="17sp"
+
+                                        />
+                                </LinearLayout>
+
+                                <LinearLayout
+
+                                    android:id="@+id/linear2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/linearTitle"
+                                    android:layout_marginLeft="3dp"
+                                    android:layout_marginTop="4dp"
+                                    android:clickable="false"
+                                    android:descendantFocusability="blocksDescendants"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/movieType"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:singleLine="true"
+                                        android:text="Genre"
+                                        android:textColor="#fff"
+                                        android:textSize="14sp" />
+
+                                    <View
+                                        android:layout_width="1dp"
+                                        android:layout_height="20dp"
+                                        android:layout_marginLeft="8dp"
+                                        android:background="#AAffffff">
+
+                                    </View>
+
+                                    <TextView
+                                        android:id="@+id/movieTime"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="8dp"
+                                        android:layout_weight="1"
+                                        android:singleLine="true"
+                                        android:text="Time"
+                                        android:textColor="#fff"
+                                        android:textSize="14sp" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/rating_layout_bookscreen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+
+                                android:layout_marginRight="5dp"
+                                android:background="@drawable/semiblack"
+                                android:elevation="5dp"
+                                android:orientation="horizontal"
+                                android:padding="5dp">
+
+                                <ImageView
+                                    android:id="@+id/ratingHeart"
+                                    android:layout_width="23dp"
+                                    android:layout_height="23dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/heartmin" />
+
+                                <TextView
+                                    android:id="@+id/ratingtop"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="5dp"
+                                    android:text="100%"
+                                    android:textColor="#FFF"
+                                    android:textSize="15sp" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+
+                        android:id="@+id/buyticket"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="Buy Ticket"
+                        android:layout_marginRight="30dp"
+
+                        android:theme="@style/appbutton" />
+
+                    <Button
+                        android:id="@+id/watchTrailor"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_gravity="end"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="30dp"
+                        android:padding="10dp"
+                        android:text="Watch Trailer"
+                        android:textColor="@color/themeColordark"
+                        android:theme="@style/appbutton2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        >
+
+                        <TextView
+                            android:id="@+id/releasedate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RELEASE DATE"
+                            android:textColor="@color/themeColordark"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/releasedateText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/releasedate"
+                            android:gravity="right"
+                            android:singleLine="true"
+                            android:text="12 june, 2016"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:id="@+id/duration"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="DURATION"
+                            android:textColor="@color/themeColordark"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/durationText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/duration"
+                            android:gravity="right"
+                            android:singleLine="true"
+                            android:text="1 Hr and 30 Min"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:id="@+id/category"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CATEGORY"
+                            android:textColor="@color/themeColordark"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/categoryText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/category"
+                            android:gravity="right"
+                            android:text="Adventure , Comedy , Action"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:id="@+id/director"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="DIRECTOR"
+                            android:textColor="@color/themeColordark"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/directorText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/director"
+                            android:gravity="right"
+                            android:singleLine="true"
+                            android:text="Joe Swanberg"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:id="@+id/actor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ACTORS"
+                            android:textColor="@color/themeColordark"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/actorText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/actor"
+                            android:gravity="right"
+                            android:singleLine="true"
+                            android:text="Micheal Scorfiled , Mark Henry "
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:id="@+id/ratingbottom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="RATING (IMDb)"
+                            android:textColor="@color/themeColordark"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/ratingbottomText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="5dp"
+                            android:layout_toRightOf="@+id/rating"
+                            android:gravity="right"
+                            android:singleLine="true"
+                            android:text="100%"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        >
+                        <TextView
+                            android:id="@+id/terms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Terms"
+                            android:textSize="17sp"
+                            android:textColor="@color/themeColordark"
+                            />
+
+                        <TextView
+                            android:id="@+id/termsText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/terms"
+                            android:text="terms"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                            android:id="@+id/theplot"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="THE PLOT"
+                            android:textColor="@color/themeColordark"
+                            android:textSize="17sp" />
+
+                        <TextView
+                            android:id="@+id/theplotText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/theplot"
+                            android:layout_marginTop="10dp"
+                            android:text="The Brides of Spies is a Adventure And Comedy and Drama movie Directed by Joe Swanberg"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -11,6 +11,7 @@ public class RegistrationResp implements Serializable {
     private String reply;
 
     private String token;
+    private String session_time;
 
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -41,4 +42,11 @@ public class RegistrationResp implements Serializable {
         this.additionalProperties.put(name, value);
     }
 
+    public String getSession_time() {
+        return session_time;
+    }
+
+    public void setSession_time(String session_time) {
+        this.session_time = session_time;
+    }
 }

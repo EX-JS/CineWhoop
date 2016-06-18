@@ -9,13 +9,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class OrderDetails {
 
-    @SerializedName("Order_datail")
+    @SerializedName("Order_detail")
     @Expose
     private List<OrderDatail> OrderDatail = new ArrayList<OrderDatail>();
     @SerializedName("Total_credit")
     @Expose
-    private List<TotalCredit> TotalCredit = new ArrayList<TotalCredit>();
+    private TotalCredit TotalCredit = new TotalCredit();
 
+    @SerializedName("status")
+    @Expose
+    private String status;
     /**
      * 
      * @return
@@ -39,7 +42,7 @@ public class OrderDetails {
      * @return
      *     The TotalCredit
      */
-    public List<TotalCredit> getTotalCredit() {
+    public TotalCredit getTotalCredit() {
         return TotalCredit;
     }
 
@@ -48,8 +51,15 @@ public class OrderDetails {
      * @param TotalCredit
      *     The Total_credit
      */
-    public void setTotalCredit(List<TotalCredit> TotalCredit) {
+    public void setTotalCredit(TotalCredit TotalCredit) {
         this.TotalCredit = TotalCredit;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

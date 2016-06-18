@@ -1,6 +1,7 @@
 package exousiatech.cinewhoop;
 
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -18,9 +19,11 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,9 +41,11 @@ import java.util.Arrays;
 
 import CinewhoopUtil.ConfigClass;
 import CinewhoopUtil.ConnectionDetectorUtil;
-import CinewhoopUtil.LoginpopUp;
+import DialogPackage.DialogForgetPassword;
+import DialogPackage.LoginpopUp;
 import FacebookLoginPackage.FacebookLogin;
 import RetrofitPackage.ApiServicesClass;
+import RetrofitPackage.LoginResponseCineWhoop;
 import RetrofitPackage.RetrofitUtil;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -54,24 +59,29 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     CallbackManager callbackManager;
     FacebookLogin fbLogin;
-    Button facebook_layout, signinGuest , signIn;
-    TextView  userIcon , passIcon  , signupBtn  ,backIcon;
+    Button facebook_layout, signinGuest, signIn;
+    TextView userIcon, passIcon, signupBtn, backIcon, forgetpassLogin;
     Typeface typeface;
     Intent it;
-    Call<ResponseBody> loginapi;
+    Call<LoginResponseCineWhoop> loginapi;
     Typeface backbtntypeface;
-    EditText  emailLog  ,passLog;
+    EditText emailLog, passLog;
+    RelativeLayout outsideRel;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     ConnectionDetectorUtil connectionDetectorUtil;
     Dialog pDialog;
     String emailtosave;
-    LinearLayout linearLayoutFacebook;
-    LoginpopUp  loginpopUp;
-    public LoginActivity(){
+    LinearLayout linearLayoutFacebook, registrationLayout;
+    LoginpopUp loginpopUp;
+    Activity activity;
+    DialogForgetPassword forgetPassword;
+
+    public LoginActivity() {
 
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,27 +90,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         sharedPreferences = getSharedPreferences(ConfigClass.Shared_PREF, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+        forgetPassword = new DialogForgetPassword(LoginActivity.this);
         typeface = Typeface.createFromAsset(getAssets(), "fonts/flaticon.ttf");
-        backbtntypeface = Typeface.createFromAsset(getAssets(),"fonts/backttf.ttf");
+        backbtntypeface = Typeface.createFromAsset(getAssets(), "fonts/backttf.ttf");
         facebook_layout = (Button) findViewById(R.id.facebookLogin);
         facebook_layout.setOnClickListener(this);
-        signinGuest = (Button)findViewById(R.id.signInAsGuest);
+        signinGuest = (Button) findViewById(R.id.signInAsGuest);
         signinGuest.setOnClickListener(this);
-        signIn = (Button)findViewById(R.id.signIn);
+        signIn = (Button) findViewById(R.id.signIn);
         signIn.setOnClickListener(this);
-        linearLayoutFacebook = (LinearLayout)findViewById(R.id.linearLayoutFacebook);
-        userIcon = (TextView)findViewById(R.id.user_iconid);
-         passIcon= (TextView)findViewById(R.id.pass_id);
-        signupBtn= (TextView)findViewById(R.id.signupBtn);
-        backIcon= (TextView)findViewById(R.id.back_icon);
-        emailLog= (EditText)findViewById(R.id.emailLog);
-        passLog= (EditText)findViewById(R.id.passLog);
-
+        linearLayoutFacebook = (LinearLayout) findViewById(R.id.linearLayoutFacebook);
+        registrationLayout = (LinearLayout) findViewById(R.id.registrationLayout);
+        registrationLayout.setOnClickListener(this);
+        userIcon = (TextView) findViewById(R.id.user_iconid);
+        passIcon = (TextView) findViewById(R.id.pass_id);
+        signupBtn = (TextView) findViewById(R.id.signupBtn);
+        backIcon = (TextView) findViewById(R.id.back_icon);
+        forgetpassLogin = (TextView) findViewById(R.id.forgetpassLogin);
+        emailLog = (EditText) findViewById(R.id.emailLog);
+        passLog = (EditText) findViewById(R.id.passLog);
+        outsideRel = (RelativeLayout) findViewById(R.id.outsideRel);
+        outsideRel.setOnClickListener(this);
         SpannableString content = new SpannableString("Sign up");
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         signupBtn.setText(content);
-        signupBtn.setOnClickListener(this);
+//        signupBtn.setOnClickListener(this);
         backIcon.setOnClickListener(this);
+        forgetpassLogin.setOnClickListener(this);
         userIcon.setTypeface(typeface);
         passIcon.setTypeface(typeface);
         backIcon.setTypeface(backbtntypeface);
@@ -110,13 +126,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         pDialog.setContentView(R.layout.progress_view);
         pDialog.setCancelable(false);
+        activity = this;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        connectionDetectorUtil=new ConnectionDetectorUtil();
-        IntentFilter intentFilter= new IntentFilter();
+        connectionDetectorUtil = new ConnectionDetectorUtil();
+        IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
         registerReceiver(connectionDetectorUtil, intentFilter);
     }
@@ -141,7 +158,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.facebookLogin:
                 callbackManager = CallbackManager.Factory.create();
                 fbLogin = new FacebookLogin(callbackManager, this);
@@ -149,26 +166,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 fbLogin.fblogin();
                 break;
             case R.id.signInAsGuest:
-                loginpopUp = new LoginpopUp(LoginActivity.this);
+                loginpopUp = new LoginpopUp(LoginActivity.this, activity);
                 loginpopUp.showDialog();
 
                 break;
             case R.id.signIn:
 
-                if (TextUtils.isEmpty(emailLog.getText().toString())){
+                if (TextUtils.isEmpty(emailLog.getText().toString())) {
                     emailLog.setError("Please fill your E-mail.");
 
-                }else if (emailLog.getText().toString().indexOf(".")==0){
+                } else if (emailLog.getText().toString().indexOf(".") == 0) {
                     emailLog.setError("Please fill your E-mail.");
                 }
-                else if (countdotsAfterAt(emailLog.getText().toString())){
-                    emailLog.setError("Please fill your E-mail.");
-
-                }
-                else if (TextUtils.isEmpty(passLog.getText().toString())){
+//                else if (countdotsAfterAt(emailLog.getText().toString())){
+//                    emailLog.setError("Please fill your E-mail.");
+//
+//                }
+                else if (TextUtils.isEmpty(passLog.getText().toString())) {
                     passLog.setError("Please fill your password");
 
-                }else{
+                } else {
                     pDialog.show();
                     callretrofitLoginmethod(emailLog.getText().toString(), passLog.getText().toString());
                 }
@@ -178,9 +195,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.back_icon:
                 super.onBackPressed();
                 break;
-            case R.id.signupBtn:
-                it  = new Intent(this, Registerclass.class);
+            case R.id.forgetpassLogin:
+
+                forgetPassword.showDialog();
+                break;
+            case R.id.registrationLayout:
+                it = new Intent(this, Registerclass.class);
                 startActivity(it);
+                break;
+            case R.id.outsideRel:
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(outsideRel.getWindowToken(), 0);
                 break;
 
         }
@@ -190,103 +215,79 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public boolean countdotsAfterAt(String s) {
         int count = 0;
         String arr[] = s.split("@");
-        if (arr.length>0){
-            String atr  = arr[1];
-            for (int i=0;i<atr.length();i++) {
-                if (atr.charAt(i)==46){
+        if (arr.length > 0) {
+            String atr = arr[1];
+            for (int i = 0; i < atr.length(); i++) {
+                if (atr.charAt(i) == 46) {
                     count++;
                 }
             }
-            if (count<=2){
+            if (count <= 2) {
                 return false;
-            }else {
+            } else {
                 return true;
             }
-        }
-        else {
+        } else {
             return true;
         }
 
     }
 
     public void callretrofitLoginmethod(String loginemail, String loginPass) {
-                emailtosave = loginemail;
+        emailtosave = loginemail;
         RetrofitUtil retrofitUtil = new RetrofitUtil();
         ApiServicesClass cineApiService = retrofitUtil.getRetrofit();
-        loginapi = cineApiService.login(loginemail,loginPass);
-        loginapi.enqueue(new Callback<ResponseBody>() {
+        loginapi = cineApiService.login(loginemail, loginPass);
+        loginapi.enqueue(new Callback<LoginResponseCineWhoop>() {
             @Override
-            public void onResponse(Response<ResponseBody> response) {
-                Log.e("resp" , response.body().toString());
+            public void onResponse(Response<LoginResponseCineWhoop> response) {
                 pDialog.dismiss();
-                try {
-                    JSONObject obj = new JSONObject(response.body().string());
-                    parseResponse(obj);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (response.body().getStatus().equalsIgnoreCase("1")) {
+                    Toast.makeText(LoginActivity.this, "You have been Logged In Successfully", Toast.LENGTH_SHORT).show();
+                    String firstName = response.body().getFirstName();
+                    String lastName = response.body().getLastName();
+                    String contact_phone = response.body().getContactPhone();
+                    String key = response.body().getKey();
+                    byte[] data = Base64.decode(key, Base64.DEFAULT);
+                    String token = null;
+                    try {
+                        token = new String(data, "UTF-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    editor.putString("name", firstName + " " + lastName);
+                    editor.putString("contact_phone", contact_phone);
+                    editor.putString(ConfigClass.Token, token);
+                    editor.putString(ConfigClass.SessionTime, response.body().getSessionTime());
+                    editor.putString("email", emailtosave);
+                    editor.putBoolean("userProfileExist", true);
+                    editor.putBoolean("loginDone", true);
+                    editor.commit();
+                    onBackPressed();
+
+
+                } else if (response.body().getStatus().equalsIgnoreCase("0")) {
+                    showSnackBar();
                 }
+
             }
 
             @Override
             public void onFailure(Throwable t) {
-                    pDialog.dismiss();
-                Snackbar snackbar = Snackbar.make(linearLayoutFacebook , "Some error occured. Please try again", Snackbar.LENGTH_LONG);
+                pDialog.dismiss();
+                Snackbar snackbar = Snackbar.make(linearLayoutFacebook, "Some error occurred. Please try again", Snackbar.LENGTH_LONG);
                 snackbar.show();
-                Log.e("error", t.getMessage());
             }
         });
     }
 
-    private void parseResponse(JSONObject response) {
 
-        try {
-            Log.e("Tag" , response.toString());
-           String status =  response.getString("status");
-            Log.e("Tag" , status);
-            if (status.equalsIgnoreCase("1") ){
-                Log.e("Tag", "login success");
-                Toast.makeText(LoginActivity.this, "You have been Logged In Successfully", Toast.LENGTH_SHORT).show();
-                Snackbar snackbar = Snackbar.make(signupBtn , "You have been Logged In Successfully", Snackbar.LENGTH_SHORT);
-                snackbar.show();
-                String firstName = response.getString("first_name");
-                String lastName =response.getString("last_name");
-                String contact_phone =response.getString("contact_phone");
-                String key =response.getString("key");
-                byte[] data = Base64.decode(response.getString("key"), Base64.DEFAULT);
-                String token = new String(data, "UTF-8");
-                Log.e("Tag", token);
-                editor.putString("name", firstName + " " + lastName);
-                editor.putString("contact_phone", contact_phone);
-                editor.putString("token", token);
-                editor.putString("email", emailtosave);
-                editor.putBoolean("userProfileExist", true);
-                editor.putBoolean("loginDone", true);
-                editor.commit();
-                super.onBackPressed();
-
-
-            }else if (status.equalsIgnoreCase("0")){
-                Log.e("Tag" , "login uinsucess");
-                showSnackBar();
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-
-        }
-
-    }
-    public void backgo(){
+    public void backgo() {
         super.onBackPressed();
     }
-    public void showSnackBar(){
 
-        Snackbar snackbar = Snackbar.make(linearLayoutFacebook, "Some error occured. Please try again", Snackbar.LENGTH_LONG);
+    public void showSnackBar() {
+        Snackbar snackbar = Snackbar.make(linearLayoutFacebook, "Some error occurred. Please try again", Snackbar.LENGTH_LONG);
         snackbar.show();
-
     }
 }

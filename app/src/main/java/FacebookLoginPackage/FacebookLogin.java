@@ -74,9 +74,6 @@ public class FacebookLogin {
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(final LoginResult loginResult) {
-                Log.e("success", "success");
-
-
                 GraphRequest request = GraphRequest.newMeRequest(
                         AccessToken.getCurrentAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
@@ -97,9 +94,7 @@ public class FacebookLogin {
                                     if (object.has("email")){
                                         emailfbtosave = object.getString("email");
                                     }else {
-                                        Log.e("email nai", "email nai haigi");
                                         alert.showAlertDialog(loginActivity, message, false);
-                                        Log.e("response", object.getString("email"));
                                     }
 
                                     String nameSplitArr[] = facebookNameFetch.split(" ");
@@ -148,12 +143,10 @@ public class FacebookLogin {
 
             @Override
             public void onCancel() {
-                Log.e("cancel", "cancelllll");
             }
 
             @Override
             public void onError(FacebookException e) {
-                Log.e("error", e.getMessage());
             }
         });
 
@@ -176,7 +169,7 @@ public class FacebookLogin {
                 Log.e("Respon", response.body().get(0).getToken());
                 Log.e("Respon", response.body().get(0).getReply());
 
-                if (TextUtils.equals(response.body().get(0).getReply(), "Registration Unsuccessful")) {
+                if (TextUtils.equals(response.body().get(0).getReply(), "Email Already Exists")) {
                     Log.e("unSucess", "");
                     loginActivity.callretrofitLoginmethod(emailfbtosave, facebookIDFetch);
                     saveuserFBDetailsforRegUnsucessful();

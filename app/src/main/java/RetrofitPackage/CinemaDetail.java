@@ -9,7 +9,6 @@ import java.util.Map;
 public class CinemaDetail implements Serializable {
 
     private String cinema_id;
-
     private String cinema_name;
 
     private String logo;

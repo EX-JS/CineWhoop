@@ -82,6 +82,8 @@ public class AdapterGenre extends RecyclerView.Adapter<AdapterGenre.GenreViewHol
                     if (flag){
 
                         editor.putBoolean("GenreFilterExist", true);
+                        editor.putBoolean("DateFilterExist", false);
+                        editor.putBoolean("CinemaFilterExist", false);
                         editor.commit();
                         it = new Intent(context , MoviesActivity.class);
 

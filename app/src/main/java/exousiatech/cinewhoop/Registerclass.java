@@ -53,7 +53,7 @@ public class Registerclass  extends AppCompatActivity implements View.OnClickLis
     Typeface customIcon;
     EditText firstNameReg , lastNameReg , emailReg , passwordReg , phoneNumberReg;
     Button signUpBtn;
-    Retrofit retrofit;
+
     Call<List<RegistrationResp>> reg;
     String jsonresp , tokentosave;
     SharedPreferences sharedPreferences;
@@ -156,6 +156,8 @@ public class Registerclass  extends AppCompatActivity implements View.OnClickLis
                     lastNameReg.setError("Please enter a Valid Name");
                 }else  if (!checkwithSpecialchar(firstNameReg.getText().toString())){
                     firstNameReg.setError("Please enter a Valid Name");
+                }else if (firstNameReg.getText().toString().startsWith(" ")){
+                    firstNameReg.setError("Please enter a Valid Name");
                 }else if (!lastcheckwithSpecialchar(lastNameReg.getText().toString())) {
                     lastNameReg.setError("Please enter a valid Name");
                 }else {
@@ -163,11 +165,8 @@ public class Registerclass  extends AppCompatActivity implements View.OnClickLis
                     jsonresp =  makejsontostring(firstNameReg.getText().toString().trim() ,lastNameReg.getText().toString().trim(),emailReg.getText().toString(),passwordReg.getText().toString()
                             ,phoneNumberReg.getText().toString() );
                             callRetrofit();
-                    Log.e("JsonData", jsonresp);
 
                 }
-
-
                 break;
         }
     }
@@ -218,16 +217,10 @@ public class Registerclass  extends AppCompatActivity implements View.OnClickLis
         RetrofitUtil retrofitUtil = new RetrofitUtil();
         ApiServicesClass cineApiService = retrofitUtil.getRetrofit();
         reg = cineApiService.registrationInfo(jsonresp);
-
         reg.enqueue(new Callback<List<RegistrationResp>>() {
-
             @Override
             public void onResponse(Response<List<RegistrationResp>> response) {
                 pDialog.dismiss();
-                Log.e("Respon" , response.body().toString());
-                Log.e("Respon" , response.body().get(0).getToken());
-                Log.e("Respon" , response.body().get(0).getReply());
-
                 if (TextUtils.equals(response.body().get(0).getReply(), "Registration Successful")){
                     Toast.makeText(Registerclass.this, "You have been registered Successfully", Toast.LENGTH_SHORT).show();
                     try {
@@ -237,7 +230,7 @@ public class Registerclass  extends AppCompatActivity implements View.OnClickLis
                         e.printStackTrace();
                     }
                     saveuserDetails(firstNameReg.getText().toString(), lastNameReg.getText().toString(), emailReg.getText().toString(), tokentosave
-                            , phoneNumberReg.getText().toString());
+                            , phoneNumberReg.getText().toString(), response.body().get(0).getSession_time());
                     Intent it = new Intent(getApplicationContext(), MoviesActivity.class);
                     startActivity(it);
 
@@ -257,22 +250,23 @@ public class Registerclass  extends AppCompatActivity implements View.OnClickLis
 
             @Override
             public void onFailure (Throwable t) {
+
                 pDialog.dismiss();
 
                 Snackbar snackbar = Snackbar.make( linearLayoutRegisterration, "Registration Unsuccessful", Snackbar.LENGTH_LONG);
                 snackbar.show();
-//                Log.e("Respon" , t.getMessage());
 
             }
         });
     }
 
-    public void saveuserDetails(String firtNametosend, String lastnametosend, String emailtosend, String token, String phonetosend) {
+    public void saveuserDetails(String firtNametosend, String lastnametosend, String emailtosend, String token, String phonetosend, String session_time) {
 
         editor.putString("name", firtNametosend+" "+lastnametosend);
         editor.putString("contact_phone", phonetosend);
-        editor.putString("token", token);
+        editor.putString(ConfigClass.Token, token);
         editor.putString("email", emailtosend);
+        editor.putString(ConfigClass.SessionTime, session_time);
         editor.putBoolean("userProfileExist", true);
         editor.putBoolean("loginDone", true);
         editor.apply();

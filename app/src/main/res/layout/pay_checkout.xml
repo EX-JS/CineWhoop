@@ -1,10 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:orientation="vertical">
+
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
@@ -12,31 +15,32 @@
 
         <include
             android:id="@+id/tool_bar"
-            layout="@layout/tool_bar">
-        </include>
+            layout="@layout/tool_bar"></include>
 
         <TextView
             android:id="@+id/toolbar_title"
-            android:elevation="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:elevation="5dp"
             android:gravity="center"
             android:text=""
-            android:textSize="18sp"
-            android:layout_gravity="center"
             android:textColor="@color/white"
+            android:textSize="18sp"
 
             />
 
     </FrameLayout>
+
     <android.support.v4.widget.NestedScrollView
-        android:fillViewport="true"
         android:id="@+id/Scrollview"
-        android:scrollbars="none"
-        android:layout_below="@+id/framelayout"
-        android:layout_above="@+id/relative"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relative"
+        android:layout_below="@+id/framelayout"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
         <LinearLayout
             android:id="@+id/moviemain"
 
@@ -45,12 +49,34 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/ticketLaout"
-                android:orientation="vertical"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp">
+                android:layout_marginLeft="10dp"
+                android:text="E-tickets sold for this movie. Valid upto 3 months. Can be used for any session any day. Exclusions apply*"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:textSize="20sp"
+                android:id="@+id/noOrdersinPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/relative"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="Nothing Available"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ticketLaout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+
 
                 <TextView
                     android:id="@+id/headerYourTotal"
@@ -58,19 +84,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:text="Your TIcket "
+                    android:text="Your Ticket "
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:card_view="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    card_view:cardBackgroundColor="@color/black"
                     android:layout_height="wrap_content"
-                    card_view:cardCornerRadius="5dp"
                     android:layout_margin="1dp"
                     android:padding="20dp"
-                    >
+                    card_view:cardBackgroundColor="@color/black"
+                    card_view:cardCornerRadius="5dp">
 
 
                     <RelativeLayout
@@ -78,46 +103,46 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/greyScreen"
-                        android:padding="10dp"
-                        >
-                        <TextView
+                        android:padding="10dp">
 
-                            android:gravity="start"
-                            android:layout_toLeftOf="@+id/priceofMovieSelecte"
+
+                        <TextView
                             android:id="@+id/namemovieselected"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/white"
                             android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/priceofMovieSelecte"
+                            android:gravity="start"
                             android:text="Name Of Movie"
-                            />
+                            android:textColor="@color/white" />
+
                         <TextView
-                            android:layout_marginRight="20dp"
-                            android:layout_toLeftOf="@+id/crossIconmovielayout"
                             android:id="@+id/priceofMovieSelecte"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="#fff"
                             android:layout_centerVertical="true"
+                            android:layout_marginRight="20dp"
+                            android:layout_toLeftOf="@+id/crossIconmovielayout"
                             android:text="Price"
-                            />
+                            android:textColor="#fff" />
+
                         <LinearLayout
 
                             android:id="@+id/crossIconmovielayout"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true">
+
                             <TextView
-                                android:layout_centerVertical="true"
                                 android:id="@+id/crossIconmovie"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="24dp"
+                                android:layout_centerVertical="true"
                                 android:text="@string/cross_icon"
-
                                 android:textColor="@color/themeColordark"
-                                />
+
+                                android:textSize="24dp" />
                         </LinearLayout>
 
                     </RelativeLayout>
@@ -126,52 +151,52 @@
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
                 android:id="@+id/offerAmountlayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/headerYourOffer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="Your Offers "
+                    android:text="Your Offer's "
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/list_of_alltheOffers"
-                    android:scrollbars="none"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    />
+                    android:scrollbars="none" />
             </LinearLayout>
 
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
 
+
     <RelativeLayout
+
         android:id="@+id/relative"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-       android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="true"
         android:layout_margin="10dp">
 
 
         <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/couponlayout"
             android:layout_width="match_parent"
-            card_view:cardBackgroundColor="@color/black"
             android:layout_height="wrap_content"
-            card_view:cardCornerRadius="15dp"
             android:layout_margin="1dp"
             android:padding="20dp"
-            android:id="@+id/couponlayout"
-            >
+            card_view:cardBackgroundColor="@color/black"
+            card_view:cardCornerRadius="15dp">
 
 
             <RelativeLayout
@@ -179,52 +204,53 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/greyScreen"
-                android:padding="2dp"
-                >
+                android:padding="2dp">
+
                 <EditText
-                    android:gravity="start"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toLeftOf="@+id/BtnCouponlayout"
                     android:id="@+id/couponcode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
                     android:layout_centerVertical="true"
-                    android:hint="Enter Promo Code"
-                    android:textColorHint="@color/white"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_toLeftOf="@+id/BtnCouponlayout"
                     android:background="@null"
+                    android:gravity="start"
+                    android:hint="Enter Promo Code"
+                    android:inputType="textCapCharacters"
                     android:singleLine="true"
-                    android:inputType="text"
-                    />
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
 
                 <LinearLayout
 
                     android:id="@+id/BtnCouponlayout"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:orientation="vertical">
+
                     <Button
                         android:id="@+id/applycouponBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Apply"
                         android:textAllCaps="false"
-                        android:textColor="@color/themeColordark"
-                        />
+                        android:textColor="@color/themeColordark" />
                 </LinearLayout>
 
             </RelativeLayout>
         </android.support.v7.widget.CardView>
+
         <LinearLayout
-            android:layout_below="@+id/couponlayout"
             android:id="@+id/totalLayout"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_below="@+id/couponlayout"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/headerTotal"
@@ -250,43 +276,43 @@
 
         <LinearLayout
 
-            android:clickable="true"
-            android:background="?selectableItemBackground"
-            android:layout_below="@+id/totalLayout"
-            android:orientation="horizontal"
             android:id="@+id/termsAndCondLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/totalLayout"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:orientation="horizontal">
+
             <android.support.v7.widget.AppCompatCheckBox
 
-                android:clickable="false"
-                app:buttonTint="@color/themeColordark"
-                android:background="@null"
                 android:id="@+id/termsandcondCheckbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@null"
+                android:clickable="false"
                 android:text="I Accept the"
                 android:textColor="@color/white"
-                />
+                app:buttonTint="@color/themeColordark" />
+
             <TextView
-                android:layout_marginLeft="5dp"
                 android:id="@+id/showtermsAndcond"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:text="Terms &amp; Conditions"
-                android:textColor="@color/themeColordark"
-                />
+                android:textColor="@color/themeColordark" />
         </LinearLayout>
+
         <Button
             android:id="@+id/payAndCheckout"
-            android:layout_below="@+id/termsAndCondLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/termsAndCondLayout"
             android:layout_centerInParent="true"
-            android:theme="@style/appbutton"
             android:gravity="center"
             android:text="Pay &amp; CheckOut"
-            />
+            android:theme="@style/appbutton" />
 
 
     </RelativeLayout>

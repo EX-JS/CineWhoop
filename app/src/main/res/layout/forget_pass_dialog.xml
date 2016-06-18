@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/black"
+
+    >
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@drawable/round_corner_shape_white"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="Forgot Password?"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="Enter your email address here "
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:padding="2dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/round_corner_edittext_shape"
+            android:layout_below="@+id/applogo"
+            android:layout_centerHorizontal="true"
+            >
+            <LinearLayout
+                android:background="@color/white"
+                android:padding="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <CinewhoopUtil.CustomTextView
+
+                    android:layout_gravity="center_vertical"
+                    android:id="@+id/email_reg_icon"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/mail_icon"
+                    android:textSize="17sp"
+                    android:background="@color/white"
+                    android:textColor="@color/themeColordark"
+
+                    />
+            </LinearLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_toRightOf="@+id/email_reg_icon"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:background="@color/white"
+                android:layout_height="match_parent">
+
+                <EditText
+
+                    android:id="@+id/emailpopUp"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:inputType="textEmailAddress"
+                    android:hint="Email"
+                    android:ems="26"
+                    android:layout_marginLeft="7dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/black"
+
+                    />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:padding="2dp"-->
+            <!--android:background="@drawable/round_corner_edittext_shape"-->
+            <!--android:layout_below="@+id/applogo"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!-->-->
+            <!--<CinewhoopUtil.CustomTextView-->
+                <!--android:layout_gravity="center_vertical"-->
+                <!--android:id="@+id/pass_reg_icon"-->
+
+                <!--android:gravity="center"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="@string/phone_icon"-->
+                <!--android:textSize="17sp"-->
+                <!--android:background="@color/white"-->
+                <!--android:textColor="@color/themeColordark"-->
+
+                <!--/>-->
+            <!--<android.support.design.widget.TextInputLayout-->
+                <!--android:background="@color/white"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/phonepopUp"-->
+                    <!--android:singleLine="true"-->
+                    <!--android:inputType="phone"-->
+                    <!--android:hint="Phone Number"-->
+                    <!--android:layout_marginLeft="7dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:ems="10"-->
+                    <!--android:maxLength="10"-->
+                    <!--android:background="@null"/>-->
+
+            <!--</android.support.design.widget.TextInputLayout>-->
+
+
+
+        <!--</LinearLayout>-->
+
+
+        <RelativeLayout
+            android:id="@+id/submitLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            >
+
+
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/forgepasswordContinue"
+                app:backgroundTint="@color/themeColordark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Continue"
+                android:textColor="@color/white"
+                />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:scrollbars="none">
+
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/tool_bar"
+                layout="@layout/tool_bar">
+            </include>
+
+            <TextView
+                android:scrollHorizontally="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:requiresFadingEdge="horizontal"
+                android:singleLine="true"
+                android:id="@+id/toolbar_title"
+                android:elevation="5dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+
+                />
+
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"
+                card_view:cardBackgroundColor="@color/greyScreen"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+
+                    android:descendantFocusability="blocksDescendants"
+                    >
+
+                    <FrameLayout
+                        android:id="@+id/movieBackground_booking"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp">
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/ViewPager_movieBack"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </android.support.v4.view.ViewPager>
+                    <com.viewpagerindicator.CirclePageIndicator
+                        android:padding="10dp"
+                        android:id="@+id/indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="bottom|center"
+                        android:layout_height="wrap_content"
+                        />
+
+                    </FrameLayout>
+
+                    <RelativeLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_gravity="bottom"
+
+                        android:layout_below="@+id/movieBackground_booking"
+                        android:background="@color/themeColor"
+
+                        >
+                        <LinearLayout
+                            android:layout_toLeftOf="@+id/rating_layout_bookscreen"
+                            android:layout_centerVertical="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            >
+                            <LinearLayout
+
+                                android:descendantFocusability="blocksDescendants"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="3dp"
+                                android:id="@+id/linearTitle">
+
+                                <TextView
+                                    android:singleLine="true"
+                                    android:id="@+id/movieName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="17sp"
+                                    android:textColor="#fff"
+                                    android:text="Movie Name"
+
+                                    />
+                            </LinearLayout>
+                            <LinearLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:id="@+id/linear2"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginLeft="3dp"
+                                android:layout_below="@+id/linearTitle"
+                                android:clickable="false"
+                                android:descendantFocusability="blocksDescendants"
+                                >
+                                <TextView
+                                    android:singleLine="true"
+                                    android:id="@+id/movieType"
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#fff"
+                                    android:text="Genre"
+                                    />
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="20dp"
+                                    android:layout_marginLeft="8dp"
+                                    android:background="#AAffffff">
+
+                                </View>
+
+                                <TextView
+                                    android:singleLine="true"
+                                    android:id="@+id/movieTime"
+                                    android:layout_weight="1"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="14sp"
+                                    android:textColor="#fff"
+                                    android:text="Time"
+                                    android:layout_marginLeft="8dp"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/rating_layout_bookscreen"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:orientation="horizontal"
+
+                            android:layout_marginRight="5dp"
+                            android:layout_centerInParent="true"
+                            android:padding="5dp"
+                            android:background="@drawable/semiblack"
+                            android:elevation="5dp"
+                            >
+                            <ImageView
+                                android:id="@+id/ratingHeart"
+                                android:layout_width="23dp"
+                                android:layout_height="23dp"
+                                android:src="@drawable/heartmin"
+                                android:layout_gravity="center"
+                                />
+                            <TextView
+                                android:id="@+id/ratingtop"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100%"
+                                android:layout_marginLeft="5dp"
+                                android:textSize="15sp"
+                                android:textColor="#FFF"
+                                android:layout_gravity="center"
+                                />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                >
+                <Button
+
+                    android:paddingRight="30dp"
+                    android:paddingLeft="30dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                  android:layout_marginLeft="20dp"
+                    android:theme="@style/appbutton"
+
+                    android:id="@+id/buyticket"
+                    android:text="Buy Ticket"/>
+                <Button
+                    android:layout_marginRight="20dp"
+                    android:padding="10dp"
+                    android:layout_gravity="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                  android:layout_alignParentRight="true"
+                    android:id="@+id/watchTrailor"
+                    android:theme="@style/appbutton2"
+                    android:textColor="@color/themeColordark"
+                    android:text="Watch Trailer"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="5dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+                    <TextView
+                        android:id="@+id/releasedate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RELEASE DATE"
+                        android:textSize="17sp"
+                        android:textColor="@color/themeColordark"
+                        />
+
+                    <TextView
+                        android:id="@+id/releasedateText"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@+id/releasedate"
+                        android:layout_marginLeft="5dp"
+                        android:layout_width="wrap_content"
+                        android:gravity="right"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="12 june, 2016"
+                        android:textSize="17sp"
+                        android:textColor="@color/white"
+                        />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/duration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DURATION"
+                        android:textColor="@color/themeColordark"
+                        android:textSize="17sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/durationText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 Hr and 30 Min"
+                        android:layout_alignParentRight="true"
+                        android:textSize="17sp"
+                        android:textColor="@color/white"
+                        android:layout_toRightOf="@+id/duration"
+                        android:gravity="right"
+                        android:layout_marginLeft="5dp"
+                        android:singleLine="true"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CATEGORY"
+                        android:textColor="@color/themeColordark"
+                        android:textSize="17sp"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/category"
+                        android:id="@+id/categoryText"
+                        android:gravity="right"
+                        android:text="Adventure , Comedy , Action"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="17sp"
+                        android:textColor="@color/white"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/director"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DIRECTOR"
+                        android:textColor="@color/themeColordark"
+                        android:textSize="17sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/directorText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Joe Swanberg"
+                        android:textSize="17sp"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@+id/director"
+                        android:gravity="right"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/white"
+                        android:singleLine="true"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/actor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ACTORS"
+                        android:textSize="17sp"
+                        android:textColor="@color/themeColordark"
+                        />
+
+                    <TextView
+                        android:id="@+id/actorText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Micheal Scorfiled , Mark Henrylkfjglshglhlsghlshglhsghldshg "
+                        android:textSize="17sp"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@+id/actor"
+                        android:gravity="right"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/white"
+                        android:singleLine="true"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/ratingbottom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="RATING (IMDb)"
+                        android:textSize="17sp"
+                        android:textColor="@color/themeColordark"
+                        />
+
+                    <TextView
+                        android:id="@+id/ratingbottomText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100%"
+                        android:textSize="17sp"
+                        android:layout_alignParentRight="true"
+                        android:layout_toRightOf="@+id/ratingbottom"
+                        android:gravity="right"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/white"
+                        android:singleLine="true"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/terms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Terms"
+                        android:textSize="17sp"
+                        android:textColor="@color/themeColordark"
+                        />
+
+                    <TextView
+                        android:id="@+id/termsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/terms"
+                        android:text="terms"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:id="@+id/theplot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="THE PLOT"
+                        android:textSize="17sp"
+                        android:textColor="@color/themeColordark"
+                        />
+
+                    <TextView
+                        android:id="@+id/theplotText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="The Brides of Spies is a Adventure And Comedy and Drama movie Directed by Joe Swanberg"
+                        android:layout_marginTop="10dp"
+                        android:textSize="17sp"
+                        android:textColor="@color/white"
+                        android:layout_below="@+id/theplot"
+                        />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        </ScrollView>
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

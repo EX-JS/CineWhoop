@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import android.view.MenuItem;
 import android.view.View;
@@ -19,8 +18,13 @@ import android.widget.ImageView;
 
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import CinewhoopUtil.ConfigClass;
@@ -32,6 +36,7 @@ import Database.DatabaseHelperCinewhoop;
 import RecyclerAdapter.AdapterMovieList;
 import RetrofitPackage.ApiServicesClass;
 import RetrofitPackage.CineWhoopDetail;
+import RetrofitPackage.OrderDatail;
 import RetrofitPackage.RetrofitUtil;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 import retrofit2.Call;
@@ -59,6 +64,7 @@ public class MoviesActivity extends AppCompatActivity implements View.OnClickLis
     List<CineWhoopDetail> details;
     ArrayList<String> datafromDatabase = new ArrayList<>();
     filterClasstoFilter filterthis;
+    SimpleDateFormat mDateformat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,15 +77,16 @@ public class MoviesActivity extends AppCompatActivity implements View.OnClickLis
         typefacechnage = new Utilclass(getApplicationContext());
         tv = new ArrayList<>();
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbarTitle = (TextView) findViewById(R.id.toolbar_title);
         textNoResults = (TextView) findViewById(R.id.textNoResults);
         progressBar = (MaterialProgressBar) findViewById(R.id.indeterminate_progress_library);
-        toolbarTitle.setText("MOVIES");
+//        toolbarTitle.setText("MOVIES");
         tv.add(toolbarTitle);
         tv.add(textNoResults);
         typefacechnage.applycustomfont(tv);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         filterBy = (ImageView) findViewById(R.id.filterBy);
         filterBy.setOnClickListener(this);
@@ -102,20 +109,38 @@ public class MoviesActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(Response<List<CineWhoopDetail>> response) {
                 details = response.body();
-                adapter = new AdapterMovieList(MoviesActivity.this, details);
-                list_of_movie.setAdapter(adapter);
-                progressBar.setVisibility(GONE);
-                Log.e("size", response.body().size()+"");
-                if (sharedPreferences.getBoolean("CinemaFilterExist",false)){
-                    Log.e("no filter" , "yes");
+                Collections.sort(details, new Comparator<CineWhoopDetail>() {
+                    @Override
+                    public int compare(CineWhoopDetail lhs, CineWhoopDetail rhs) {
+                        if (lhs !=null || rhs!=null){
+                            Date d1 = new Date();
+                            Date d2 = new Date();
+                            d1 = convertStrToDate(lhs.getReleaseDate());
+                            d2  =convertStrToDate(rhs.getReleaseDate());
 
-                    PerformcinemaFilter();
-                }else if(sharedPreferences.getBoolean("DateFilterExist",false)){
-                    PerformdateFilter();
+                            return d2.compareTo(d1) ;
+                        }else {
+                            return 0;
+                        }
+
+                    }
+                });
+                if (details.isEmpty()){
+                    textNoResults.setVisibility(VISIBLE);
+                }else {
+                    adapter = new AdapterMovieList(MoviesActivity.this, details);
+                    list_of_movie.setAdapter(adapter);
+                    progressBar.setVisibility(GONE);
+                    if (sharedPreferences.getBoolean("CinemaFilterExist",false)){
+                        PerformcinemaFilter();
+                    }else if(sharedPreferences.getBoolean("DateFilterExist",false)){
+                        PerformdateFilter();
+                    }
+                    else if (sharedPreferences.getBoolean("GenreFilterExist",false)){
+                        PerformgenreFilter();
+                    }
                 }
-                else if (sharedPreferences.getBoolean("GenreFilterExist",false)){
-                    PerformgenreFilter();
-                }
+
 
             }
 
@@ -130,7 +155,18 @@ public class MoviesActivity extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-
+    private Date convertStrToDate(String query) {
+        mDateformat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = mDateformat.parse(query);
+            System.out.println(date);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return date;
+    }
 
 
     @Override
@@ -192,14 +228,19 @@ public class MoviesActivity extends AppCompatActivity implements View.OnClickLis
     private void PerformcinemaFilter() {
         datafromDatabase = acessDataBase.selectData();
         for (int i =0;i<datafromDatabase.size();i++){
-            Log.e("value" ,datafromDatabase.get(i));
             String arr[] =datafromDatabase.get(i).split(" ");
             String cinemaid = arr[0];
-            Log.e("value", cinemaid);
 
         ArrayList<CineWhoopDetail> filterlist = filterthis.filter(details , cinemaid);
-        adapter.animateTo(filterlist);
-            list_of_movie.scrollToPosition(0);
+            if (filterlist.isEmpty()){
+                textNoResults.setVisibility(VISIBLE);
+                adapter.animateTo(filterlist);
+                list_of_movie.scrollToPosition(0);
+            }else {
+                adapter.animateTo(filterlist);
+                list_of_movie.scrollToPosition(0);
+            }
+
 
         }
     }
@@ -207,28 +248,37 @@ public class MoviesActivity extends AppCompatActivity implements View.OnClickLis
     private void PerformdateFilter() {
         datafromDatabase = acessDataBase.selectData();
         for (int i =0;i<datafromDatabase.size();i++){
-            Log.e("value" ,datafromDatabase.get(i));
             String arr[] =datafromDatabase.get(i).split(" ");
             String date = arr[0];
-            Log.e("value", date);
 
             ArrayList<CineWhoopDetail> filterlist = filterthis.filterbydatemethod(details, date);
-            adapter.animateTo(filterlist);
-            list_of_movie.scrollToPosition(0);
+            if (filterlist.isEmpty()){
+                textNoResults.setVisibility(VISIBLE);
+                adapter.animateTo(filterlist);
+                list_of_movie.scrollToPosition(0);
+            }else {
+                adapter.animateTo(filterlist);
+                list_of_movie.scrollToPosition(0);
+            }
+
 
         }
     }
     private void PerformgenreFilter() {
         datafromDatabase = acessDataBase.selectData();
         for (int i = 0; i < datafromDatabase.size(); i++) {
-            Log.e("value", datafromDatabase.get(i));
             String arr[] = datafromDatabase.get(i).split(" ");
             String genre = arr[0];
-            Log.e("value", genre);
-
             ArrayList<CineWhoopDetail> filterlist = filterthis.filterbyGenremethod(details, genre);
-            adapter.animateTo(filterlist);
-            list_of_movie.scrollToPosition(0);
+            if (filterlist.isEmpty()){
+                textNoResults.setVisibility(VISIBLE);
+                adapter.animateTo(filterlist);
+                list_of_movie.scrollToPosition(0);
+            }else {
+                adapter.animateTo(filterlist);
+                list_of_movie.scrollToPosition(0);
+            }
+
         }
     }
 }

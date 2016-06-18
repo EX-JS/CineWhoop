@@ -1,10 +1,15 @@
 package exousiatech.cinewhoop;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -40,6 +45,11 @@ public class OfferDescription extends AppCompatActivity implements View.OnClickL
     SharedPreferences.Editor editor;
     String websiteUrlLink;
     DatabaseHelperCinewhoop acessDataBase;
+    private static final String EXTRA_CUSTOM_TABS_SESSION = "android.support.customtabs.extra.SESSION";
+    private static final String EXTRA_CUSTOM_TABS_TOOLBAR_COLOR = "android.support.customtabs.extra.TOOLBAR_COLOR";
+    public static final String CUSTOM_TAB_PACKAGE_NAME = "com.chrome.dev";  // Change when in stable
+    public static final String ACTION_CUSTOM_TABS_CONNECTION =
+            "android.support.customtabs.action.CustomTabsService";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +97,18 @@ public class OfferDescription extends AppCompatActivity implements View.OnClickL
     }
 
     private void setUi() {
-        offerName.setText(eachOffer.getName());
+        if (!eachOffer.getType().equalsIgnoreCase("offer")){
+            direction.setVisibility(View.GONE);
+            websiteurl.setVisibility(View.GONE);
+        }else {
+            direction.setVisibility(View.VISIBLE);
+            websiteurl.setVisibility(View.VISIBLE);
+        }
+        offerName.setText(eachOffer.getName().trim());
         offerPrice.setText("$ "+eachOffer.getPrice());
         offerDescription.setText(eachOffer.getDescription());
-//        websiteurl.setText("Visit us :"+eachOffer.getWebsiteUrl());
         Picasso.with(getApplicationContext())
-                .load(ConfigClass.BASE_URL+"umax/upload/"+eachOffer.getImage().get(0))
+                .load(ConfigClass.BASE_URL+"admin/upload/"+eachOffer.getImage().get(0))
                 .into(offerImage);
     }
 
@@ -118,11 +134,33 @@ public class OfferDescription extends AppCompatActivity implements View.OnClickL
                 websiteUrlLink = eachOffer.getWebsiteUrl();
                 if (!websiteUrlLink.startsWith("http://") && !websiteUrlLink.startsWith("https://")) {
                     websiteUrlLink = "http://" + websiteUrlLink;
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrlLink));
-                    startActivity(browserIntent);
+//                    compatible code
+//                    CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder().build();
+//                    CustomTabActivityHelper.openCustomTab(
+//                            this, customTabsIntent, Uri.parse(url), new WebviewFallback());
+
+//                    marshmalow code
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                    builder.setToolbarColor(ContextCompat.getColor(getApplicationContext() ,R.color.themeColor));
+                    builder.setStartAnimations(this, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    builder.setExitAnimations(this, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    CustomTabsIntent customTabsIntent = builder.build();
+                    customTabsIntent.launchUrl(this, Uri.parse(websiteUrlLink));
+
+
+//                    purana code
+//                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrlLink));
+//                    startActivity(browserIntent);
                 }else {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrlLink));
-                    startActivity(browserIntent);
+
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                    builder.setToolbarColor(getResources().getColor(R.color.themeColor));
+                    builder.setStartAnimations(this, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    builder.setExitAnimations(this, android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                    CustomTabsIntent customTabsIntent = builder.build();
+                    customTabsIntent.launchUrl(this, Uri.parse(websiteUrlLink));
+//                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(websiteUrlLink));
+//                    startActivity(browserIntent);
                 }
                 break;
             case R.id.direction:

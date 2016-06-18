@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CineWhoopDetail implements Serializable{
+public class CineWhoopDetail implements Serializable {
 
 
     private String movie_id;
@@ -24,40 +24,29 @@ public class CineWhoopDetail implements Serializable{
     private MovieTime movie_time;
     private String youtube_url;
     private String imdb_url;
-
-
-
-
-
+    private String terms;
 
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-
 
     public String getMovieId() {
         return movie_id;
     }
 
-
     public void setMovieId(String movieId) {
         this.movie_id = movieId;
     }
-
 
     public String getTitle() {
         return title;
     }
 
-
     public void setTitle(String title) {
         this.title = title;
     }
 
-
     public String getDescription() {
         return description;
     }
-
 
     public void setDescription(String description) {
         this.description = description;
@@ -67,7 +56,6 @@ public class CineWhoopDetail implements Serializable{
         return category;
     }
 
-
     public void setCategory(String Category) {
         this.category = Category;
     }
@@ -76,36 +64,29 @@ public class CineWhoopDetail implements Serializable{
         return movie_lenght;
     }
 
-
     public void setMovieLenght(String movieLenght) {
         this.movie_lenght = movieLenght;
     }
-
 
     public String getReleaseDate() {
         return release_date;
     }
 
-
     public void setReleaseDate(String releaseDate) {
         this.release_date = releaseDate;
     }
-
 
     public String getDirector() {
         return director;
     }
 
-
     public void setDirector(String director) {
         this.director = director;
     }
 
-
     public String getActor() {
         return actor;
     }
-
 
     public void setActor(String actor) {
         this.actor = actor;
@@ -115,12 +96,9 @@ public class CineWhoopDetail implements Serializable{
         return rating;
     }
 
-
     public void setRating(String rating) {
         this.rating = rating;
     }
-
-
 
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -176,5 +154,13 @@ public class CineWhoopDetail implements Serializable{
 
     public void setImdb_url(String imdb_url) {
         this.imdb_url = imdb_url;
+    }
+
+    public String getTerms() {
+        return terms;
+    }
+
+    public void setTerms(String terms) {
+        this.terms = terms;
     }
 }

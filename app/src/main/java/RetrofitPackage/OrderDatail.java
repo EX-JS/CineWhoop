@@ -26,6 +26,8 @@ public class OrderDatail {
     @SerializedName("order_type")
     @Expose
     private String orderType;
+    private String order_time;
+    private String order_format;
 
 
 
@@ -133,4 +135,19 @@ public class OrderDatail {
     }
 
 
+    public String getOrder_time() {
+        return order_time;
+    }
+
+    public void setOrder_time(String order_time) {
+        this.order_time = order_time;
+    }
+
+    public String getOrder_format() {
+        return order_format;
+    }
+
+    public void setOrder_format(String order_format) {
+        this.order_format = order_format;
+    }
 }

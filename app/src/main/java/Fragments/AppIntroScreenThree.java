@@ -14,7 +14,7 @@ public class AppIntroScreenThree extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         View introThree = inflater.inflate(R.layout.appintro_three, container, false);
-
+////////
         return introThree;
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +51,9 @@ public class AdapterWhatsHot extends RecyclerView.Adapter<AdapterWhatsHot.HotVie
         typefaceChange.changetypeface(holder.getoffer);
         typefaceChange.changetypeface(holder.offerName);
 
-        holder.offerName.setText(offerDetails.get(position).getName());
+        holder.offerName.setText(offerDetails.get(position).getName().trim());
         Picasso.with(context)
-                .load(ConfigClass.BASE_URL + "umax/upload/" + offerDetails.get(position).getImage().get(0))
+                .load(ConfigClass.BASE_URL + "admin/upload/" + offerDetails.get(position).getImage().get(0))
                 .placeholder(R.drawable.preloader)
                 .into(holder.offerBackground);
 

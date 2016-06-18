@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -108,9 +107,8 @@ public class SelectCinema extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onFailure(Throwable t) {
                 progressBar.setVisibility(View.GONE);
-                Snackbar snackbar = Snackbar.make(list_of_cinema , "Some Error Occured Please try again", Snackbar.LENGTH_LONG);
+                Snackbar snackbar = Snackbar.make(list_of_cinema , "Some Error Occurred Please try again", Snackbar.LENGTH_LONG);
                 snackbar.show();
-                Log.e("Error " , t.getMessage());
             }
         });
         return detailList;

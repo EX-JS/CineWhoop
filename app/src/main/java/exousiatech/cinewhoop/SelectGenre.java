@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -86,7 +85,6 @@ public class SelectGenre extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-                Log.e("eroor" , t.getMessage());
                 frameProgess.setVisibility(View.GONE);
                 Snackbar snackbar = Snackbar.make(list_of_genre, "Some Error Occured Please try again", Snackbar.LENGTH_LONG);
                 snackbar.show();

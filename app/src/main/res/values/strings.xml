@@ -70,7 +70,7 @@
     <string name="text_below_button">Email Us at enquiry@cinewhoop.com</string>
     <string name="title_activity_my_calender">Calender</string>
     <string name="title_activity_search">Search</string>
-    <string name="invite_a_friend_title">Invite your friends to the exiting world of CinwWhoop! in just a Click.</string>
+    <string name="invite_a_friend_title">Invite your friends to the exiting world of CineWhoop! in just a Click.</string>
     <string name="facebook_app_id">1658286957765279</string>
     <string name="user_icon">&#xe001;</string>
     <string name="cross_icon">&#xe000;</string>
@@ -83,8 +83,9 @@
     <string name="back">&#xf100;</string>
     <string name="down">&#xf101;</string>
     <string name="right">&#xf102;</string>
+    <string name="order">&#xf100;</string>
 
-    <string name="signup">Sign up </string>
+    <string name="signup">Sign Up </string>
     <string name="btn_text_customer_enquiry">Enquiry</string>
     <string name="terms1"> Find your session at one of our cinema partners. Once you purchase your ticket we will email your ticket to the email address provided. If you sign up you can also view your ticket from ‘My Account’.</string>
     <string name="terms2">1. Some session times may not be available due to high volume of bookings and popularity of the film, please check with the cinema before booking if you are looking for a particular session time.</string>

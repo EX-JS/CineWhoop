@@ -35,31 +35,28 @@ public class AdapterMovieList extends RecyclerView.Adapter<AdapterMovieList.Myvi
     Context context;
     LayoutInflater layoutInflater;
     Utilclass typefaceChange;
-    List<CineWhoopDetail> details , details2;
+    List<CineWhoopDetail> details, details2;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     DatabaseHelperCinewhoop acessDataBase;
     ArrayList<String> datafromDatabase = new ArrayList<>();
-    boolean cinemaFilter , genreFilter , dateFilter;
+    boolean cinemaFilter, genreFilter, dateFilter;
 
-    public AdapterMovieList(Context context , List<CineWhoopDetail> details){
+    public AdapterMovieList(Context context, List<CineWhoopDetail> details) {
         this.context = context;
-        layoutInflater =LayoutInflater.from(context);
+        layoutInflater = LayoutInflater.from(context);
         typefaceChange = new Utilclass(this.context);
         this.details = details;
         sharedPreferences = context.getSharedPreferences(ConfigClass.Shared_PREF, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         acessDataBase = new DatabaseHelperCinewhoop(context);
-
-        Log.e("resp" , details.toString());
     }
-
 
 
     @Override
     public MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.home_custom_view , parent , false);
-        MyviewHolder holder=new MyviewHolder(view);
+        View view = layoutInflater.inflate(R.layout.home_custom_view, parent, false);
+        MyviewHolder holder = new MyviewHolder(view);
         return holder;
     }
 
@@ -74,17 +71,13 @@ public class AdapterMovieList extends RecyclerView.Adapter<AdapterMovieList.Myvi
         holder.movieTitle.setText(details.get(position).getTitle());
         holder.movieduration.setText(convertmintohours(details.get(position).getMovieLenght()));
 
-        Log.e("category", details.get(position).getCategory() + " ");
         holder.movieType.setText(details.get(position).getCategory());
         holder.movieRating.setText(details.get(position).getRating());
-        Log.e("image", details.get(position).getFeatured_image().size() + " ");
         Picasso.with(context)
-                    .load(ConfigClass.BASE_URL+"umax/upload/"+details.get(position).getFeatured_image().get(0))
-                    .placeholder(R.drawable.preloader)
-                    .into(holder.movieBackgroundImage);
+                .load(ConfigClass.BASE_URL + "admin/upload/" + details.get(position).getFeatured_image().get(0))
+                .placeholder(R.drawable.preloader)
+                .into(holder.movieBackgroundImage);
 
-
-        Log.e("cineId", details.get(position).getCinema_id());
     }
 
     @Override
@@ -93,20 +86,19 @@ public class AdapterMovieList extends RecyclerView.Adapter<AdapterMovieList.Myvi
     }
 
     public class MyviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        FrameLayout mainFrame;
-        TextView movieTitle, movieType, movieduration , movieRating;
+        TextView movieTitle, movieType, movieduration, movieRating;
         ImageView movieBackgroundImage;
         TextView bookBtn;
 
         public MyviewHolder(View itemView) {
             super(itemView);
 
-            movieTitle = (TextView)itemView.findViewById(R.id.movieName);
-            movieType = (TextView)itemView.findViewById(R.id.movieType);
-            movieduration = (TextView)itemView.findViewById(R.id.movieTime);
-            movieRating = (TextView)itemView.findViewById(R.id.rating);
-            movieBackgroundImage = (ImageView)itemView.findViewById(R.id.movieBackground);
-            bookBtn= (TextView) itemView.findViewById(R.id.bookBtn);
+            movieTitle = (TextView) itemView.findViewById(R.id.movieName);
+            movieType = (TextView) itemView.findViewById(R.id.movieType);
+            movieduration = (TextView) itemView.findViewById(R.id.movieTime);
+            movieRating = (TextView) itemView.findViewById(R.id.rating);
+            movieBackgroundImage = (ImageView) itemView.findViewById(R.id.movieBackground);
+            bookBtn = (TextView) itemView.findViewById(R.id.bookBtn);
 
             bookBtn.setOnClickListener(this);
             movieBackgroundImage.setOnClickListener(this);
@@ -117,13 +109,13 @@ public class AdapterMovieList extends RecyclerView.Adapter<AdapterMovieList.Myvi
         public void onClick(View v) {
             Intent it = null;
             try {
-                it = new Intent(context , BookingScreen.class);
+                it = new Intent(context, BookingScreen.class);
                 it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                it.putExtra("movie_detail",details.get(getAdapterPosition()));
+                it.putExtra("movie_detail", details.get(getAdapterPosition()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            switch (v.getId()){
+            switch (v.getId()) {
 
                 case R.id.movieBackground:
                     context.startActivity(it);
@@ -136,23 +128,23 @@ public class AdapterMovieList extends RecyclerView.Adapter<AdapterMovieList.Myvi
         }
     }
 
-    public void animateTo(ArrayList<CineWhoopDetail> contactList){
+    public void animateTo(ArrayList<CineWhoopDetail> contactList) {
         applyAndAnimateRemovals(contactList);
     }
 
 
     private void applyAndAnimateRemovals(ArrayList<CineWhoopDetail> mcontactList) {
-        details =mcontactList;
+        details = mcontactList;
         notifyDataSetChanged();
 
     }
 
-    public String  convertmintohours(String min){
+    public String convertmintohours(String min) {
         String startTime = "00:00";
         int minutes = Integer.parseInt(min);
-        int h = minutes / 60 + Integer.valueOf(startTime.substring(0,1));
-        int m = minutes % 60 + Integer.valueOf(startTime.substring(3,4));
-        String newtime = h+" hr "+m +" min";
+        int h = minutes / 60 + Integer.valueOf(startTime.substring(0, 1));
+        int m = minutes % 60 + Integer.valueOf(startTime.substring(3, 4));
+        String newtime = h + " hr " + m + " min";
         return newtime;
     }
 

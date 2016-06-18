@@ -27,7 +27,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 
 import org.json.JSONException;
@@ -36,6 +36,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import CinewhoopUtil.ConfigClass;
+import CinewhoopUtil.ProgressDialogClass;
 import CinewhoopUtil.RestroCalls;
 import CinewhoopUtil.Utilclass;
 import Database.DatabaseHelperCinewhoop;
@@ -44,9 +45,9 @@ import RecyclerAdapter.AdapterOffersPayandCheckout;
 /**
  * Created by jagteshwar on 05-02-2016.
  */
-public class PayAndCheckoutClass extends AppCompatActivity implements View.OnClickListener ,couponinterface {
+public class PayAndCheckoutClass extends AppCompatActivity implements View.OnClickListener, couponinterface {
     Toolbar toolbar;
-    TextView showtermsAndcond, toolbarTitle, headerYourTotal, namemovieselected, priceofMovieSelecte, crossIconmovie, headerYourOffer, headerTotal, totalAmount;
+    TextView noOrdersinPayment, showtermsAndcond, toolbarTitle, headerYourTotal, namemovieselected, priceofMovieSelecte, crossIconmovie, headerYourOffer, headerTotal, totalAmount;
     CheckBox termsandcondCheckbox;
     Button payAndCheckout, applycouponBtn;
     ArrayList<TextView> tv;
@@ -65,6 +66,8 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
     double moviePrice = 0;
     double offerPrice = 0;
     double totalPrice = 0;
+    double totalPricetosend = 0;
+    ProgressDialogClass dialogClass;
 
     RestroCalls restroCalls;
     private static final String CONFIG_CLIENT_ID = "ARJ2hVcdEXPiRsAQL4MHmMfv5EQeVh2kYGM3krqm3U4UmRVqtv9HuH3GJCqQh4qfvzmzfIkszj9eYN3v";
@@ -80,6 +83,7 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
         tv = new ArrayList<>();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        dialogClass = new ProgressDialogClass(PayAndCheckoutClass.this);
         typeface2 = Typeface.createFromAsset(getAssets(), "fonts/cross.ttf");
         sharedPreferences = getSharedPreferences(ConfigClass.Shared_PREF, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -109,6 +113,8 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
         tv.add(totalAmount);
         showtermsAndcond = (TextView) findViewById(R.id.showtermsAndcond);
         tv.add(showtermsAndcond);
+        noOrdersinPayment = (TextView) findViewById(R.id.noOrdersinPayment);
+        tv.add(noOrdersinPayment);
         namemovieselected = (TextView) findViewById(R.id.namemovieselected);
         tv.add(namemovieselected);
         priceofMovieSelecte = (TextView) findViewById(R.id.priceofMovieSelecte);
@@ -132,13 +138,20 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
         pDialog.findViewById(R.id.okBtn).setOnClickListener(this);
         pDialog.setCancelable(true);
 
-        Log.e("Total Amount", sharedPreferences.getString("totalPriceMovie", ""));
-
     }
 
     private void SetUiForPayandcheckout() {
         InflateMovielayout();
         Inflateofferlayout();
+       checkForNoOrders();
+    }
+
+    private void checkForNoOrders() {
+        if (!sharedPreferences.getBoolean("MovieExist", false)&&!accesdatabase.offerExistornot()){
+            noOrdersinPayment.setVisibility(View.VISIBLE);
+        }else {
+            noOrdersinPayment.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void InflateMovielayout() {
@@ -152,6 +165,7 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
             moviePrice = 0;
             settotalAmount();
         }
+        checkForNoOrders();
     }
 
     public void Inflateofferlayout() {
@@ -165,6 +179,7 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
             offerPrice = 0;
             settotalAmount();
         }
+        checkForNoOrders();
     }
 
     private double getTotalPriceOfOfferFromDataBase() {
@@ -174,7 +189,6 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
             String arr[] = datafromDatabase.get(i).split("~");
             offerpricetoset = Double.parseDouble(arr[3]) + offerpricetoset;
         }
-        Log.e("Offer", offerpricetoset + "");
         return offerpricetoset;
     }
 
@@ -182,6 +196,7 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
 
         double totalPrice = moviePrice + offerPrice;
         this.totalPrice = totalPrice;
+        totalPricetosend = totalPrice;
         totalAmount.setText(String.format("$ %.2f", totalPrice));
 
     }
@@ -231,16 +246,15 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
                 if (totalPrice == 0.0) {
                     Snackbar snackbar = Snackbar.make(payAndCheckout, "You have nothing to pay", Snackbar.LENGTH_SHORT);
                     snackbar.show();
-                }else if (termsandcondCheckbox.isChecked()) {
+                } else if (termsandcondCheckbox.isChecked()) {
                     Intent it = new Intent(PayAndCheckoutClass.this, PaymentEway.class);
-                    Log.e("move" , totalPrice+" ");
                     editor.putString("offerPrice", offerPrice + "");
                     editor.putString("totalPrice", totalPrice + "");
                     editor.commit();
-                    it.putExtra("total", totalPrice);
+                    it.putExtra("total", totalPricetosend);
                     startActivity(it);
 
-                } else   {
+                } else {
                     Snackbar snackbar = Snackbar.make(payAndCheckout, "Please Accept The Terms And Conditions", Snackbar.LENGTH_SHORT);
                     snackbar.show();
                 }
@@ -261,8 +275,9 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
 
                 if (TextUtils.isEmpty(couponcode.getText().toString())) {
                     couponcode.setError("Please Enter some code");
-                }else {
-                restroCalls.couponcallretro(couponcode.getText().toString(), this);
+                } else {
+                    dialogClass.showdialog();
+                    restroCalls.couponcallretro(couponcode.getText().toString(), this);
                 }
 
                 break;
@@ -272,30 +287,32 @@ public class PayAndCheckoutClass extends AppCompatActivity implements View.OnCli
 
     @Override
     public void valueforcoupontoset(String status) {
-                if (status.equalsIgnoreCase("")){
-                    Snackbar snackbar = Snackbar.make(payAndCheckout, "Coupon Code Not Valid", Snackbar.LENGTH_SHORT);
-                    snackbar.show();
-                }else {
-                    View view = this.getCurrentFocus();
-                    InputMethodManager imm = null;
 
-                        if (view != null) {
-                            imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                        }
+        dialogClass.hideDialog();
+        if (status.equalsIgnoreCase("")) {
+            Snackbar snackbar = Snackbar.make(payAndCheckout, "Coupon Code Not Valid", Snackbar.LENGTH_SHORT);
+            snackbar.show();
+        } else {
+            View view = this.getCurrentFocus();
+            InputMethodManager imm = null;
 
-                        Double.parseDouble(status);
-                        Log.e("values", totalPrice + " " );
-                        double pe = ((totalPrice) * Double.parseDouble(status)) / 100;
-                        Log.e("values", pe + " ");
-                        double value = totalPrice - pe;
-                        totalAmount.setText(String.format("$ %.2f", totalPrice) + "\n" + "\n" + " - " + String.format(" $ %.2f", pe) + "\n" + "_________" + "\n" + "\n" + "" + String.format("$ %.2f", value));
+            if (view != null) {
+                imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
 
-                    totalPrice = value;
-                    }
-                }
-                }
+            Double.parseDouble(status);
+            double pe = ((totalPrice) * Double.parseDouble(status)) / 100;
+            double value = totalPrice - pe;
+            totalAmount.setText(String.format("$ %.2f", totalPrice) + "\n" + "\n" + " - " + String.format(" $ %.2f", pe) + "\n" + "_________" + "\n" + "\n" + "" + String.format("$ %.2f", value));
 
-    interface couponinterface{
+            totalPricetosend = value;
+            couponcode.setText(null);
+            Toast.makeText(PayAndCheckoutClass.this, "Promo Code Applied ", Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+
+interface couponinterface {
     void valueforcoupontoset(String status);
 }
